@@ -22,12 +22,23 @@ public class ClientServlet extends HttpServlet {
 		//System.out.println(path);
 		
 		switch (path) {
-		case "/list-client": 
-			listUser(request, response);
+		case "/dashboard": 
+			dashboard(request, response);
 			break;
+			
+		case "/contact":
+			contact(request, response);
+			break;
+			
+		case "/table":
+			request.getRequestDispatcher("table.jsp").forward(request, response);
+			break;
+		case "/login":
+			request.getRequestDispatcher("login.jsp").forward(request, response);
+			break;	
 		default:
 			//countClient(request, response);
-			listUser(request, response);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 			break;
 		}
 	}
@@ -38,14 +49,13 @@ public class ClientServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//clients = cDaoImple.getAll();
-		//request.setAttribute("clients", clients);
-		request.setAttribute("no_of_clients", "23");
-		request.setAttribute("no_of_comptes", "12");
-		request.setAttribute("comptes_courants", "6");
-		request.setAttribute("comptes_epargne", "6");
+	private void dashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		request.getRequestDispatcher("index.jsp").forward(request, response);
+	}
+	private void contact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		request.getRequestDispatcher("contact.jsp").forward(request, response);
 	}
 
 }

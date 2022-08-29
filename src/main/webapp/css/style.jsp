@@ -1,4 +1,21 @@
 <style>
+*, ::before,::after{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+html, body{
+  position: relative;
+  width: 100%;
+  overflow-x:hidden; 
+  
+  height: 100vh;
+}
+img{
+  object-fit: cover;
+}
 body {
   background-color: #fbfbfb;
 }
@@ -38,4 +55,10 @@ body {
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
+/*Contact.jsp*/
+.border-top {
+      border-top: 5px solid #33b5e5 !important;
+      border-top-left-radius: .25rem!important;
+    	border-top-right-radius: .25rem!important;
+ }
 </style>

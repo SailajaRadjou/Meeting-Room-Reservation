@@ -5,19 +5,19 @@
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
+           href="dashboard"
+           class="list-group-item list-group-item-action py-2 ripple active"
            aria-current="true"
            >
           <i class="fas fa-tachometer-alt fa-fw me-3"></i
             ><span>Main dashboard</span>
         </a>
         <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple active"
+           href="table"
+           class="list-group-item list-group-item-action py-2 ripple"
            >
           <i class="fas fa-chart-area fa-fw me-3"></i
-            ><span>Webiste traffic</span>
+            ><span>Table</span>
         </a>
         <a
            href="#"
@@ -65,9 +65,9 @@
            ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
           >
         <a
-           href="#"
+           href="contact"
            class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-money-bill fa-fw me-3"></i><span>Sales</span></a
+           ><i class="fas fa-money-bill fa-fw me-3"></i><span>Contact</span></a
           >
       </div>
     </div>
