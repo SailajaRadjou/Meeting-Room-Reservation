@@ -16,6 +16,6 @@ public interface IClientDao {
 	Client search(String nom, String prenom);
 	
 	Client find(String username, String password);
-	int find(String username);
+	
 	int countClient();
 }

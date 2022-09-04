@@ -170,25 +170,88 @@ public class ClientDaoImple implements IClientDao{
 
 	@Override
 	public Client search(String nom, String prenom) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom = ? and prenom = ?");
+			
+			pStmt.setString(1, nom);
+			pStmt.setString(2, prenom);
+			
+			ResultSet rSet = pStmt.executeQuery();
+			
+			if(rSet.next()) {
+				client = new Client();
+				client.setClientId(rSet.getInt("client_id"));
+				client.setNom(rSet.getString("nom"));
+				client.setPrenom(rSet.getString("prenom"));
+				client.setNomEntreprise(rSet.getString("nom_entreprise"));
+				client.setMail(rSet.getString("mail"));
+				client.setPhone(rSet.getString("phone"));
+				client.setCivilite(rSet.getString("civilite"));
+				client.setUsername(rSet.getString("nom_identifiant"));
+				client.setPassword(rSet.getString("mot_de_passe"));
+								
+				return client;
+			}
+			
+			pStmt.close();
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		return null;
 	}
 
+	//For authentification
 	@Override
 	public Client find(String username, String password) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom_identifiant = ? and mot_de_passe = md5(?)");
+			
+			pStmt.setString(1, username);
+			pStmt.setString(2, password);
+			
+			ResultSet rSet = pStmt.executeQuery();
+			System.out.println("Authentification executed");
+			
+			if(rSet.next()) {
+				client = new Client();
+				client.setClientId(rSet.getInt("client_id"));
+				client.setNom(rSet.getString("nom"));
+				client.setPrenom(rSet.getString("prenom"));
+				client.setNomEntreprise(rSet.getString("nom_entreprise"));
+				client.setMail(rSet.getString("mail"));
+				client.setPhone(rSet.getString("phone"));
+				client.setCivilite(rSet.getString("civilite"));
+				client.setUsername(rSet.getString("nom_identifiant"));
+				client.setPassword(rSet.getString("mot_de_passe"));
+								
+				return client;
+			}
+			
+			pStmt.close();
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		return null;
-	}
-
-	@Override
-	public int find(String username) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 	@Override
 	public int countClient() {
-		// TODO Auto-generated method stub
+		int count = 0;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select count(*) as Total_Clients from client");
+			
+			ResultSet rSet = pStmt.executeQuery();
+			if(rSet.next()) {
+				count = rSet.getInt("Total_Clients");
+			}
+			pStmt.close();
+			return count;
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		return 0;
 	}
 
