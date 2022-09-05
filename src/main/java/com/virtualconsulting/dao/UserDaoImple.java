@@ -132,13 +132,63 @@ public class UserDaoImple implements IUserDao {
 
 	@Override
 	public User search(String nom, String prenom) {
-		// TODO Auto-generated method stub
+		
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from user where nom = ? and prenom = ?");
+			
+			pStmt.setString(1, nom);
+			pStmt.setString(2, prenom);
+			
+			ResultSet rSet = pStmt.executeQuery();
+			if(rSet.next()) {
+				user = new User(); 
+				user.setId(rSet.getInt("user_id"));
+				user.setNom(rSet.getString("nom"));
+				user.setPrenom(rSet.getString("prenom"));
+				user.setMail(rSet.getString("mail"));
+				user.setUsername(rSet.getString("nom_identifiant"));
+				user.setPassword(rSet.getString("mot_de_passe"));
+				user.setCivilite(rSet.getString("civilite"));
+				user.setStatut(rSet.getInt("statut"));			
+				
+				System.out.println(user);
+				return user;
+			}
+			pStmt.close();
+		} catch (Exception e) {
+			System.err.println(e);
+		}	
 		return null;
 	}
 
+	//For authentification
 	@Override
 	public User find(String username, String password) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from user where nom_identifiant = ? and mot_de_passe = md5(?)");
+			
+			pStmt.setString(1, username);
+			pStmt.setString(2, password);
+			
+			ResultSet rSet = pStmt.executeQuery();
+			if(rSet.next()) {
+				user = new User(); 
+				user.setId(rSet.getInt("user_id"));
+				user.setNom(rSet.getString("nom"));
+				user.setPrenom(rSet.getString("prenom"));
+				user.setMail(rSet.getString("mail"));
+				user.setUsername(rSet.getString("nom_identifiant"));
+				user.setPassword(rSet.getString("mot_de_passe"));
+				user.setCivilite(rSet.getString("civilite"));
+				user.setStatut(rSet.getInt("statut"));			
+				
+				System.out.println(user);
+				return user;
+			}
+			pStmt.close();
+		} catch (Exception e) {
+			System.err.println(e);
+		}	
 		return null;
 	}
 //to get the statut of the user
@@ -171,14 +221,54 @@ public class UserDaoImple implements IUserDao {
 
 	@Override
 	public User find(int id) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from user where user_id = ?");
+			
+			pStmt.setInt(1, id);
+			
+			ResultSet rSet = pStmt.executeQuery();
+			
+			if(rSet.next()) {
+				user = new User(); 
+				user.setId(rSet.getInt("user_id"));
+				user.setNom(rSet.getString("nom"));
+				user.setPrenom(rSet.getString("prenom"));
+				user.setMail(rSet.getString("mail"));
+				user.setUsername(rSet.getString("nom_identifiant"));
+				user.setPassword(rSet.getString("mot_de_passe"));
+				user.setCivilite(rSet.getString("civilite"));
+				user.setStatut(rSet.getInt("statut"));			
+				
+				System.out.println(user);
+				pStmt.close();
+				return user;
+			}	
+		}
+		catch (Exception e) {
+			System.err.println(e);
+		}
 		return null;
 	}
 
+
 	@Override
 	public int countUser() {
-		// TODO Auto-generated method stub
+		int count = 0;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select count(*) as Total_Users from user");
+			
+			ResultSet rSet = pStmt.executeQuery();
+			if(rSet.next()) {
+				count = rSet.getInt("Total_Users");
+			}
+			pStmt.close();
+			return count;
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}
 		return 0;
+	
 	}
 
 }
