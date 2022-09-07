@@ -37,7 +37,6 @@ public class ClientServlet extends HttpServlet {
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			break;	
 		default:
-			//countClient(request, response);
 			request.getRequestDispatcher("login.jsp").forward(request, response);
 			break;
 		}

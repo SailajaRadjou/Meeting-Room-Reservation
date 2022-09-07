@@ -7,18 +7,20 @@ public class SalleReunion {
 	private String localisation;
 	private int capacite;
 	private double tarif;
+	private String salleImage;
 	
 	public SalleReunion() {
 		super();
 	}
 
-	public SalleReunion(String salleId, String salleNom, String localisation, int capacite, double tarif) {
+	public SalleReunion(String salleId, String salleNom, String localisation, int capacite, double tarif, String salleImage) {
 		super();
 		this.salleId = salleId;
 		this.salleNom = salleNom;
 		this.localisation = localisation;
 		this.capacite = capacite;
 		this.tarif = tarif;
+		this.salleImage = salleImage;
 	}
 
 	public String getSalleId() {
@@ -61,10 +63,18 @@ public class SalleReunion {
 		this.tarif = tarif;
 	}
 
+	public String getSalleImage() {
+		return salleImage;
+	}
+
+	public void setSalleImage(String salleImage) {
+		this.salleImage = salleImage;
+	}
+
 	@Override
 	public String toString() {
 		return "SalleReunion [salleId=" + salleId + ", salleNom=" + salleNom + ", localisation=" + localisation
-				+ ", capacite=" + capacite + ", tarif=" + tarif + "]";
-	}	
+				+ ", capacite=" + capacite + ", tarif=" + tarif + ", salleImage=" + salleImage + "]";
+	}
 	
 }

@@ -9,10 +9,7 @@
 <title>Meeting Room Reservation</title>
 </head>
 <body>
-<h2>Hello World!</h2>
-<p>no_of_clients : ${no_of_clients}</p>
-<p>no_of_comptes : ${no_of_comptes}</p>
-<p>Compte Courant Totale : ${comptes_courants}</p>
+<h2>Meeting Room Reservation</h2>
 
 <div class="container-fluid">
     <div class="row flex-nowrap">

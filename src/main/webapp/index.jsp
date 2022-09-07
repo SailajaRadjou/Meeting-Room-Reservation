@@ -74,7 +74,7 @@
       </button>
     </div>
 
-    <a href="" class="white-text mx-3">Table name</a>
+    <a href="" class="white-text mx-3">Listes des Salle de Réunion </a>
 
     <div>
       <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">

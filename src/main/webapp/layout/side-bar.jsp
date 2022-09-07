@@ -17,9 +17,9 @@
            class="list-group-item list-group-item-action py-2 ripple"
            >
           <i class="fas fa-chart-area fa-fw me-3"></i
-            ><span>Table</span>
+            ><span>Salle de Reunion</span>
         </a>
-        <a
+        <!-- <a
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a
@@ -40,29 +40,24 @@
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-          >
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-globe fa-fw me-3"></i
-          ><span>International</span></a
-          >
+          >-->
+        
         <a
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-building fa-fw me-3"></i
-          ><span>Partners</span></a
+          ><span>Clients</span></a
           >
         <a
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
            ><i class="fas fa-calendar fa-fw me-3"></i
-          ><span>Calendar</span></a
+          ><span>Reservation de la salle</span></a
           >
         <a
            href="#"
            class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-users fa-fw me-3"></i><span>Users</span></a
+           ><i class="fas fa-users fa-fw me-3"></i><span>Utilisateurs</span></a
           >
         <a
            href="contact"
@@ -109,7 +104,7 @@
                autocomplete="off"
                type="search"
                class="form-control rounded"
-               placeholder='Search (ctrl + "/" to focus)'
+               placeholder='Search...'
                style="min-width: 225px"
                />
         <span class="input-group-text border-0"
@@ -159,71 +154,7 @@
           </a>
         </li>
 
-        <!-- Icon dropdown -->
-        <li class="nav-item dropdown">
-          <a
-             class="nav-link me-3 me-lg-0 dropdown-toggle hidden-arrow"
-             href="#"
-             id="navbarDropdown"
-             role="button"
-             data-mdb-toggle="dropdown"
-             aria-expanded="false"
-             >
-            <i class="united kingdom flag m-0"></i>
-          </a>
-          <ul
-              class="dropdown-menu dropdown-menu-end"
-              aria-labelledby="navbarDropdown"
-              >
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="united kingdom flag"></i>English
-                <i class="fa fa-check text-success ms-2"></i
-                  ></a>
-            </li>
-            <li><hr class="dropdown-divider" /></li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="poland flag"></i>Polski</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="china flag"></i>中文</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="japan flag"></i>日本語</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="germany flag"></i>Deutsch</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="france flag"></i>Français</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="spain flag"></i>Español</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="russia flag"></i>Русский</a
-                >
-            </li>
-            <li>
-              <a class="dropdown-item" href="#"
-                 ><i class="portugal flag"></i>Português</a
-                >
-            </li>
-          </ul>
-        </li>
+        
 
         <!-- Avatar -->
         <li class="nav-item dropdown">
