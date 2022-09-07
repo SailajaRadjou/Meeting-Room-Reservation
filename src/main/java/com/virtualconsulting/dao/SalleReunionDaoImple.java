@@ -14,26 +14,26 @@ public class SalleReunionDaoImple implements ISalleReunionDao {
 	Connection conn = SingletonConnection.getConnection();
 	
 	@Override
-	public SalleReunion save(SalleReunion sr) {
+	public SalleReunion save(SalleReunion salleReunion) {
 		try {
 	
-			salle = find(sr.getSalleId());
+			salle = find(salleReunion.getSalleId());
 			if (salle == null) {
 				
 				String sql = "insert into salle_reunion (salle_id, nom_de_salle, localisation, capacite, tarif, image_salle) values (?, ?, ?, ?, ?, ?)";
 	
 				pStmt = conn.prepareStatement(sql);
 	
-				pStmt.setString(1, sr.getSalleId());
-				pStmt.setString(2, sr.getSalleNom());
-				pStmt.setString(3, sr.getLocalisation());
-				pStmt.setInt(4, sr.getCapacite());
-				pStmt.setDouble(5, sr.getTarif());
-				pStmt.setString(6, sr.getSalleImage());
+				pStmt.setString(1, salleReunion.getSalleId());
+				pStmt.setString(2, salleReunion.getSalleNom());
+				pStmt.setString(3, salleReunion.getLocalisation());
+				pStmt.setInt(4, salleReunion.getCapacite());
+				pStmt.setDouble(5, salleReunion.getTarif());
+				pStmt.setString(6, salleReunion.getSalleImage());
 				pStmt.executeUpdate();
 				System.out.println("Inserted a new record Successfully....");
 				pStmt.close();
-				return sr;
+				return salleReunion;
 			}
 		}
 		catch (Exception e) {
@@ -43,21 +43,21 @@ public class SalleReunionDaoImple implements ISalleReunionDao {
 	}
 
 	@Override
-	public SalleReunion update(SalleReunion sr) {
+	public SalleReunion update(SalleReunion salleReunion) {
 		try {
 			PreparedStatement pStmt = conn.prepareStatement("update salle_reunion set nom_de_salle = ?, localisation = ?, capacite = ?, tarif = ?, image_salle = ? where salle_id = ?");
 			
-			pStmt.setString(6, sr.getSalleId());
-			pStmt.setString(1, sr.getSalleNom());
-			pStmt.setString(2, sr.getLocalisation());
-			pStmt.setInt(3, sr.getCapacite());
-			pStmt.setDouble(4, sr.getTarif());
-			pStmt.setString(5, sr.getSalleImage());			
+			pStmt.setString(6, salleReunion.getSalleId());
+			pStmt.setString(1, salleReunion.getSalleNom());
+			pStmt.setString(2, salleReunion.getLocalisation());
+			pStmt.setInt(3, salleReunion.getCapacite());
+			pStmt.setDouble(4, salleReunion.getTarif());
+			pStmt.setString(5, salleReunion.getSalleImage());			
 			
 			pStmt.executeUpdate();
 			System.out.println("Updated Successfully....");
 			pStmt.close();
-			return this.find(sr.getSalleId());
+			return this.find(salleReunion.getSalleId());
 			
 		} catch (Exception e) {
 			System.err.println(e);
@@ -66,12 +66,12 @@ public class SalleReunionDaoImple implements ISalleReunionDao {
 	}
 
 	@Override
-	public int delete(SalleReunion sr) {
+	public int delete(SalleReunion salleReunion) {
 		int res;
 		try {
 			PreparedStatement pStmt = conn.prepareStatement("delete from salle_reunion where salle_id = ?");
 			
-			pStmt.setString(1, sr.getSalleId());			
+			pStmt.setString(1, salleReunion.getSalleId());			
 			res = pStmt.executeUpdate();			
 			pStmt.close();
 			
@@ -111,11 +111,11 @@ public class SalleReunionDaoImple implements ISalleReunionDao {
 	}
 
 	@Override
-	public SalleReunion find(String sid) {
+	public SalleReunion find(String salleId) {
 		try {
 			PreparedStatement pStmt = conn.prepareStatement("select * from salle_reunion where salle_id = ?");
 			
-			pStmt.setString(1, sid);
+			pStmt.setString(1, salleId);
 			
 			ResultSet rSet = pStmt.executeQuery();
 			

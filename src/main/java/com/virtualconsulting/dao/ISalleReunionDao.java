@@ -8,13 +8,13 @@ import com.virtualconsulting.metier.SalleReunion;
 
 public interface ISalleReunionDao {
 
-	SalleReunion save(SalleReunion sr);
-	SalleReunion update(SalleReunion sr);
-	int delete(SalleReunion sr);
+	SalleReunion save(SalleReunion salleReunion);
+	SalleReunion update(SalleReunion salleReunion);
+	int delete(SalleReunion salleReunion);
 	
 	ArrayList<SalleReunion> getAll();
 	
-	SalleReunion find(String sid);	
+	SalleReunion find(String salleId);	
 	
 	SalleReunion search(String nom);
 	

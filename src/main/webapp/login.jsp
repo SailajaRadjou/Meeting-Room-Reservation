@@ -24,15 +24,15 @@
 <body>
 <div class="container pt-4">
 <!-- Default form login -->
-<form class="text-center border border-light p-5" action="login">
+<form method="post" class="text-center border border-light p-5" action="loginClient">
 
     <p class="h4 mb-4">Sign in</p>
 
-    <!-- Email -->
-    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail">
+    <!-- Username -->
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username" name="username">
 
     <!-- Password -->
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password">
+    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
 
     <div class="d-flex justify-content-around">
         <div>
@@ -65,6 +65,8 @@
     <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
 
 </form>
+<hr>
+<p class="mb-0" style="font-size: 1.5rem; color: red; font-weight: 600;">${message}</p>
 <!-- Default form login -->
 </div>
 <script

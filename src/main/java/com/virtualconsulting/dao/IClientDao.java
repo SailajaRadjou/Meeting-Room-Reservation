@@ -6,9 +6,9 @@ import com.virtualconsulting.metier.Client;
 
 public interface IClientDao {
 
-	Client save(Client c);
-	Client update(Client c);
-	int delete(Client c);
+	Client save(Client client);
+	Client update(Client client);
+	int delete(Client client);
 	
 	ArrayList<Client> getAll();
 	
