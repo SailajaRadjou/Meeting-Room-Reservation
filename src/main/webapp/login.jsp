@@ -24,7 +24,7 @@
 <body>
 <div class="container pt-4">
 <!-- Default form login -->
-<form method="post" class="text-center border border-light p-5" action="loginClient">
+<form method="post" class="text-center border border-light p-5" action="loginUser">
 
     <p class="h4 mb-4">Sign in</p>
 

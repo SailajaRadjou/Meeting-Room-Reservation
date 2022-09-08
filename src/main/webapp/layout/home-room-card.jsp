@@ -19,7 +19,7 @@
   </div>
   <div class="col">
     <div class="card h-100">
-      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/043.webp" class="card-img-top" alt="Los Angeles Skyscrapers"/>
+      <img src="images/front.jpg" class="card-img-top" alt="Los Angeles Skyscrapers"/>
       <div class="card-body">
         
         <p class="card-text">
@@ -36,7 +36,7 @@
   </div>
   <div class="col">
     <div class="card h-100">
-      <img src="https://mdbcdn.b-cdn.net/img/new/standard/city/042.webp" class="card-img-top" alt="Palm Springs Road"/>
+      <img src="images/original.jpg" class="card-img-top" alt="Palm Springs Road"/>
       <div class="card-body">
         
         <p class="card-text">

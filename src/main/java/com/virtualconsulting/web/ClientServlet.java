@@ -49,11 +49,27 @@ public class ClientServlet extends HttpServlet {
 			break;
 			
 		case "/loginClient":
+			request.getRequestDispatcher("login-client.jsp").forward(request, response);
+			break;
+			
+		case "/loginValid":
 			loginClient(request, response);
 			break;
 			
 		case "/loginUser":
 			loginClient(request, response);
+			break;
+		
+		case "/save-client":
+			saveClient(request, response);
+			break;
+			
+		case "/modify-client":
+			//modifyClient(request, response);
+			break;
+			
+		case "/update-client":
+			//updateClient(request, response);
 			break;
 			
 		default:
@@ -77,17 +93,43 @@ public class ClientServlet extends HttpServlet {
 		if (client == null) {
 			String msg = "Enter correct username & password";
 			request.setAttribute("message", msg);
-			request.getRequestDispatcher("login.jsp").forward(request, response);
+			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
 			request.setAttribute("username", username);
-			request.getRequestDispatcher("index.jsp").forward(request, response);
+			clients = clientDaoImple.getAll();
+			if (clients != null) {
+				for (Client client : clients) {
+					System.out.println(client);
+				}
+			} else {
+				System.out.println("cannot recupere");
+			}
+			
+			request.setAttribute("clients", clients);
+			request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 		}
 		
 	}
 	
+	private void saveClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		String nomEntreprise = request.getParameter("nom_entreprise");
+		String mail = request.getParameter("mail");
+		String phone = request.getParameter("phone");		
+		String civilite = request.getParameter("civilite");
+		String username = request.getParameter("nom_identifiant");
+		String password = request.getParameter("mot_de_passe");
+		client = new Client(nom, prenom, nomEntreprise, mail, phone, civilite, username, password);
+		client = clientDaoImple.save(client);
+		
+		request.setAttribute("client", client);
+		request.getRequestDispatcher("client-confirme.jsp").forward(request, response);
+	}
+	
 	private void dashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("index.jsp").forward(request, response);
+		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 	}
 	private void contact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
