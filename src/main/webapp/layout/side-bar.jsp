@@ -1,69 +1,55 @@
-<nav
-       id="sidebarMenu"
-       class="collapse d-lg-block sidebar collapse bg-white"
-       >
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
-        <a
-           href="dashboard"
-           class="list-group-item list-group-item-action py-2 ripple active"
-           aria-current="true"
-           >
-          <i class="fas fa-tachometer-alt fa-fw me-3"></i
-            ><span>Main dashboard</span>
+        <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
+          <i class="fas fa-tachometer-alt fa-fw me-3"></i>
+          <span>Main dashboard</span>
         </a>
+        <a href="table" class="list-group-item list-group-item-action py-2 ripple">
+          <i class="fas fa-chart-area fa-fw me-3"></i>
+          <span>Salle de Reunion</span>
+        </a>        
+        <span class="dropend">
+	        <a class="list-group-item list-group-item-action py-2 ripple dropdown-toggle"
+	           href="#" data-mdb-toggle="dropdown" aria-expanded="false">
+	           <i class="fas fa-building fa-fw me-3"></i><span>Clients</span>
+	           
+	        </a> 
+		    <span class="visually-hidden">Toggle Dropdown</span>		  
+			  <ul class="dropdown-menu">
+			    <li><a class="dropdown-item" href="#">Action</a></li>
+			    <li><a class="dropdown-item" href="#">Another action</a></li>
+			    <li><a class="dropdown-item" href="#">Something else here</a></li>
+			    <li><hr class="dropdown-divider" /></li>
+			    <li><a class="dropdown-item" href="#">Separated link</a></li>
+			  </ul>
+		</span>
         <a
-           href="table"
+           href="#"
            class="list-group-item list-group-item-action py-2 ripple"
-           >
-          <i class="fas fa-chart-area fa-fw me-3"></i
-            ><span>Salle de Reunion</span>
+           ><i class="fas fa-calendar fa-fw me-3"></i>
+           <span>Reservation de la salle</span>
         </a>
-        <!-- <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-lock fa-fw me-3"></i><span>Password</span></a
-          >
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-chart-line fa-fw me-3"></i
-          ><span>Analytics</span></a
-          >
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           >
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>SEO</span>
+        <span class="dropend">
+	        <a href="#" data-mdb-toggle="dropdown" aria-expanded="false"
+	           class="list-group-item list-group-item-action py-2 ripple dropdown-toggle">
+	           <i class="fas fa-users fa-fw me-3"></i>
+	           <span>Utilisateurs</span>
+	        </a>
+	     		  
+			  <ul class="dropdown-menu">
+			    <li><a class="dropdown-item" href="#">Action</a></li>
+			    <li><a class="dropdown-item" href="#">Another action</a></li>
+			    <li><a class="dropdown-item" href="#">Something else here</a></li>
+			    <li><hr class="dropdown-divider" /></li>
+			    <li><a class="dropdown-item" href="#">Separated link</a></li>
+			  </ul>
+		</span>   
+        <a href="contact" class="list-group-item list-group-item-action py-2 ripple">
+	        <i class="fas fa-money-bill fa-fw me-3"></i>
+	        <span>Contact</span>
         </a>
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-chart-bar fa-fw me-3"></i><span>Orders</span></a
-          >-->
-        
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-building fa-fw me-3"></i
-          ><span>Clients</span></a
-          >
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-calendar fa-fw me-3"></i
-          ><span>Reservation de la salle</span></a
-          >
-        <a
-           href="#"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-users fa-fw me-3"></i><span>Utilisateurs</span></a
-          >
-        <a
-           href="contact"
-           class="list-group-item list-group-item-action py-2 ripple"
-           ><i class="fas fa-money-bill fa-fw me-3"></i><span>Contact</span></a
-          >
+          
       </div>
     </div>
   </nav>
@@ -180,7 +166,7 @@
               >
             <li><a class="dropdown-item" href="#">My profile</a></li>
             <li><a class="dropdown-item" href="#">Settings</a></li>
-            <li><a class="dropdown-item" href="#">Logout</a></li>
+            <li><a class="dropdown-item" href="home-page">Logout</a></li>
           </ul>
         </li>
       </ul>
