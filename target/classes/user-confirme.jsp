@@ -20,7 +20,7 @@
 />
 <%@ include file = "css/style.jsp"%>
 <%@ include file = "css/home-style.jsp"%>
-<title>Confirmation de nouveau client</title>
+<title>Confirmation de nouveau Employee</title>
 </head>
 <body>
 <header>
@@ -29,17 +29,16 @@
 </header>
 <div class="container mt-5 pt-5">
 	<div class="card container" style="width: 30rem;">
-	  <div class="card-header px-3">Client ajouté avec succès</div>
+	  <div class="card-header px-3">Employee ajouté avec succès</div>
 	  <ul class="list-group list-group-light list-group-small">
-	    <li class="list-group-item px-3">#Client Id&emsp;:&emsp;${client.getClientId()}</li>
-	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${client.getNom()}</li>
-	    <li class="list-group-item px-3">Prenom&emsp;:&emsp;${client.getPrenom()}</li>
-	    <li class="list-group-item px-3">Nom de l'entreprise&emsp;:&emsp;${client.getNomEntreprise()}</li>
-	    <li class="list-group-item px-3">Email&emsp;:&emsp;${client.getMail()}</li>
-	    <li class="list-group-item px-3">Téléphone&emsp;:&emsp;${client.getPhone()}</li>
-	    <li class="list-group-item px-3">Civilite&emsp;:&emsp;${client.getCivilite()}</li>
-	    <li class="list-group-item px-3">Username&emsp;:&emsp;${client.getUsername()}</li>
+	    <li class="list-group-item px-3">#Employee Id&emsp;:&emsp;${user.getId()}</li>
+	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${user.getNom()}</li>
+	    <li class="list-group-item px-3">Prenom&emsp;:&emsp;${user.getPrenom()}</li>
+	    <li class="list-group-item px-3">Email&emsp;:&emsp;${user.getMail()}</li>	    
+	    <li class="list-group-item px-3">Civilité&emsp;:&emsp;${user.getCivilite()}</li>
+	    <li class="list-group-item px-3">Username&emsp;:&emsp;${user.getUsername()}</li>
 	    <li class="list-group-item px-3">Password&emsp;:&emsp;****${password}****</li>
+	    <li class="list-group-item px-3">Statut&emsp;:&emsp;${user.getStatut()}</li>
 	  </ul>
 	</div>
 </div>	

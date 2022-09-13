@@ -37,9 +37,9 @@
 	    </a>	     		  
 			<span class="visually-hidden">Toggle Dropdown</span>		  
 			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="add-employee">Ajoute un compte Employee</a></li>
+	            <li><a class="dropdown-item" href="#">Ajoute un compte Employee</a></li>
 	            <!-- <li><a class="dropdown-item" href="#">Modifier le Profil</a></li> -->
-	            <li><a class="dropdown-item" href="employee-list">Listes des Personnels</a></li>
+	            <li><a class="dropdown-item" href="#">Listes des Personnels</a></li>
           	</ul>
         <a href="contact" class="list-group-item list-group-item-action py-2 ripple">
 	        <i class="fas fa-money-bill fa-fw me-3"></i>
@@ -109,7 +109,13 @@
              data-mdb-toggle="dropdown"
              aria-expanded="false"
              >
-            Bonjour ${username}
+            <img
+                 src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
+                 class="rounded-circle"
+                 height="22"
+                 alt=""
+                 loading="lazy"
+                 />
           </a>
           <ul
               class="dropdown-menu dropdown-menu-end"

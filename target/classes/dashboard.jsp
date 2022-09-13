@@ -19,6 +19,7 @@
   rel="stylesheet"
 />
 <%@ include file = "css/style.jsp"%>
+<%@ include file = "css/home-style.jsp"%>
 <title>Meeting Room Reservation</title>
 </head>
 <body>
@@ -46,7 +47,7 @@
 		        <form class="d-flex md-form justify-content-center my-0">
 		            <!-- Default input -->
 		            <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
-		            <a href="#" class="btn btn-primary">Button</a>
+		            <a href="#" class="btn btn-primary"><i class="fas fa-search"></i></a>
 		
 		        </form>
 		
@@ -54,7 +55,7 @@
 		
 		</div>
 		<!-- Heading -->
-	<%@ include file = "layout/list-client.jsp" %>
+		<%@ include file = "layout/dashboard-content.jsp" %>
   </div>  
 </main>
 <!--Main layout-->

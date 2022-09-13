@@ -35,6 +35,9 @@ public class SalleReunionDaoImple implements ISalleReunionDao {
 				pStmt.close();
 				return salleReunion;
 			}
+			else {
+				System.out.println("Salle Id déja Existe");
+			}
 		}
 		catch (Exception e) {
 			System.err.println(e);

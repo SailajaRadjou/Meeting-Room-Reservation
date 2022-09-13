@@ -4,4 +4,9 @@
 	font-family: 'Cinzel Decorative', cursive;
 	font-size: 3rem;
 }
+.ez_title_dash{
+	font-family: 'Cinzel Decorative', cursive;
+	font-size: 1.6rem;
+	color: blue;
+}
 </style>

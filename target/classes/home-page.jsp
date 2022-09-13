@@ -44,7 +44,7 @@
 		
 		  <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
 		    <li><a class="dropdown-item" href="loginClient">Client</a></li>
-		    <li><a class="dropdown-item" href="#">Employee</a></li>
+		    <li><a class="dropdown-item" href="loginUser">EZ-Meet Personnel</a></li>
 		    <li><a class="dropdown-item" href="#">À propos de nous</a></li>
 		  </ul>
 		</div>

@@ -55,10 +55,74 @@ body {
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
-/*Contact.jsp*/
+/***************************** Contact.jsp*************************************/
 .border-top {
       border-top: 5px solid #33b5e5 !important;
       border-top-left-radius: .25rem!important;
     	border-top-right-radius: .25rem!important;
  }
+ 
+ /**************************** Login Client ***************************************/
+ .background-radial-gradient {
+      background-color: hsl(218, 41%, 15%);
+      background-image: radial-gradient(650px circle at 0% 0%,
+          hsl(218, 41%, 35%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%),
+        radial-gradient(1250px circle at 100% 100%,
+          hsl(218, 41%, 45%) 15%,
+          hsl(218, 41%, 30%) 35%,
+          hsl(218, 41%, 20%) 75%,
+          hsl(218, 41%, 19%) 80%,
+          transparent 100%);
+    }
+
+    #radius-shape-1 {
+      height: 220px;
+      width: 220px;
+      top: -60px;
+      left: -130px;
+      background: radial-gradient(#44006b, #ad1fff);
+      overflow: hidden;
+    }
+
+    #radius-shape-2 {
+      border-radius: 38% 62% 63% 37% / 70% 33% 67% 30%;
+      bottom: -60px;
+      right: -110px;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(#44006b, #ad1fff);
+      overflow: hidden;
+    }
+
+    .bg-glass {
+      background-color: hsla(0, 0%, 100%, 0.9) !important;
+      backdrop-filter: saturate(200%) blur(25px);
+    }
+    /**************************** Dashboard Content ******************************/
+    .container_display{
+
+	display: flex;
+	justify-content: space-evenly;
+    align-items: center;
+    
+	}
+	.card-body{
+		box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.38);
+		/*background: radial-gradient(circle, rgba(240,241,233,1) 51%, rgba(201,225,227,1) 98%);*/
+		background: radial-gradient(circle, rgba(240,241,233,1) 51%, rgba(247,250,250,1) 98%);
+	}
+	.card_display{
+		width: 30rem !important;
+		padding: 25px;
+		
+	}
+	
+	.count_card{
+		max-width: 25rem;
+		box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.38);
+	}
 </style>
