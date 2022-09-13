@@ -6,7 +6,7 @@
 }
 .ez_title_dash{
 	font-family: 'Cinzel Decorative', cursive;
-	font-size: 1.6rem;
-	color: blue;
+	font-size: 1.5rem;
+	color: #012169;
 }
 </style>

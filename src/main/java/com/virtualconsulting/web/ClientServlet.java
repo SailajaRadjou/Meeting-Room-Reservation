@@ -281,7 +281,7 @@ public class ClientServlet extends HttpServlet {
 			} else {
 				System.out.println("Process Failed....");
 			}
-    		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+    		response.sendRedirect("dashboard");
     	} catch (Exception e) {
 			e.printStackTrace();
 		}		

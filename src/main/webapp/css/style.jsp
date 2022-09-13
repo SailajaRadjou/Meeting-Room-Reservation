@@ -125,4 +125,10 @@ body {
 		max-width: 25rem;
 		box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.38);
 	}
+	.card-header{
+	 	/*background-image: linear-gradient( 109.6deg,  rgba(22,155,215,1) 11.2%, rgba(34,45,101,1) 99.8% );*/
+	 	background-image: linear-gradient( 109.6deg,  rgba(22,155,215,1) 11.2%, rgba(34,45,101,1) 99.8% );
+	 	font-size: 1.6rem;
+	 	color: white;
+	}
 </style>

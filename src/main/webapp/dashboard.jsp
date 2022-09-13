@@ -44,12 +44,12 @@
 		            <span>Dashboard</span>
 		        </h4>
 		
-		        <form class="d-flex md-form justify-content-center my-0">
-		            <!-- Default input -->
+		       <!--  <form class="d-flex md-form justify-content-center my-0">
+		            Default input
 		            <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
 		            <a href="#" class="btn btn-primary"><i class="fas fa-search"></i></a>
 		
-		        </form>
+		        </form> -->
 		
 		    </div>
 		
