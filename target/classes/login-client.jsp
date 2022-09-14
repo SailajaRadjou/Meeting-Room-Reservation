@@ -19,6 +19,7 @@
   rel="stylesheet"
 />
 <%@ include file = "css/style.jsp"%>
+<%@ include file = "css/home-style.jsp"%>
 <title>Login Page Client</title>
 </head>
 <body>
@@ -29,14 +30,12 @@
 	    <div class="row gx-lg-5 align-items-center mb-5">
 	      <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
 	        <h1 class="my-5 display-5 fw-bold ls-tight" style="color: hsl(218, 81%, 95%)">
-	          The best offer <br />
-	          <span style="color: hsl(218, 81%, 75%)">for your business</span>
+	          La meilleure offre <br />
+	          <span style="color: hsl(218, 81%, 75%)">pour votre entreprise</span>
 	        </h1>
 	        <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
-	          Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-	          Temporibus, expedita iusto veniam atque, magni tempora mollitia
-	          dolorum consequatur nulla, neque debitis eos reprehenderit quasi
-	          ab ipsum nisi dolorem modi. Quos?
+	          Avec des installations magnifiquement conçues et une technologie de pointe, 
+	          nous offrons une variété d'inclusions d'adhésion et d'équipements pour renforcer votre entreprise.
 	        </p>
 	      </div>
 	
@@ -45,14 +44,14 @@
 	        <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
 	
 	        
-	          <div class="card-body px-4 py-5 px-md-5">
+	          <!-- <div class="card-body px-4 py-5 px-md-5"> -->
 	            <div class="card mx-4 mx-md-5 shadow-5-strong" style="
 				        margin-top: 0px;
 				        
 				        backdrop-filter: blur(30px);
 				        width: 30rem;
 				        ">
-				    <div class="card-body py-5 px-md-5" style="">
+				    <div class="card-body py-5 px-md-5">
 				<!-- Pills navs -->
 				<ul class="nav nav-pills nav-justified mb-3" id="ex1" role="tablist">
 				  <li class="nav-item" role="presentation">
@@ -193,9 +192,16 @@
 				</div>
 				<!-- Pills content -->
 				</div>
-	          </div>
+	         
 	        </div>
 	      </div>
+	      <div class="d-flex justify-content-center align-items-center">
+	      	<div class="text-white mt-5">
+          	<h1 class="mb-3 ez_title">EZ-MEET</h1>
+          	<h4 class="mb-3">An amazing event begins with us.</h4>
+          </div>
+	      </div>
+	      
 	    </div>
 	  
 	</section> 

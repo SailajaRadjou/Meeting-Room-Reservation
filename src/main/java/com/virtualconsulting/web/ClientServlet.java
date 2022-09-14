@@ -175,7 +175,7 @@ public class ClientServlet extends HttpServlet {
 		} else {
 			request.setAttribute("username", username);
 			
-			request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+			response.sendRedirect("dashboard");
 		}
 		
 	}
@@ -314,7 +314,7 @@ public class ClientServlet extends HttpServlet {
 		} else {
 			request.setAttribute("username", username);
 			
-			request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+			response.sendRedirect("dashboard");
 		}
 		
 	}

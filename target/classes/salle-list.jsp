@@ -28,7 +28,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container mt-5 pt-4">
-	<h3 class="mt-5 text-center mb-5">Listes des Salle de Réunion</h3>
+	<h3 class="mt-5 text-center mb-5">Listes des Salle de RÃ©union</h3>
 	
 	
 	
@@ -63,9 +63,9 @@
 							      </a>
 					    	</span>
 					   </div> 	
-					    <h6 class="card-title">${salle.getSalleImage()}</h6>
-					    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-					    <a href="#!" class="btn btn-primary">Réservez dès maintenant</a>
+					    <h6 class="card-title">${salle.getTarif()} â‚¬</h6>
+					    <p class="card-text">Explore flexible meeting rooms  situated in the heart of ${salle.getLocalisation()}.</p>
+					    <a href="#!" class="btn btn-primary">RÃ©servez dÃ¨s maintenant</a>
 					  </div>
 				</div>	  
 			</div>
