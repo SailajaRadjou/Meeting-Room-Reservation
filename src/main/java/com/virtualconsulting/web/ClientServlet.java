@@ -1,5 +1,6 @@
 package com.virtualconsulting.web;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -131,6 +132,18 @@ public class ClientServlet extends HttpServlet {
 			listSalle(request, response);
 			break;
 			
+		case "/modify-salle":
+			modifySalle(request, response);
+			break;
+			
+		case "/update-salle":
+			updateSalle(request, response);
+			break;
+		
+		case "/delete-salle":
+			
+			break;
+			
 		case "/home-page":
 			request.getRequestDispatcher("home-page.jsp").forward(request, response);
 			break;	
@@ -175,7 +188,7 @@ public class ClientServlet extends HttpServlet {
 		} else {
 			request.setAttribute("username", username);
 			
-			response.sendRedirect("dashboard");
+			request.getRequestDispatcher("dashboard").forward(request, response);
 		}
 		
 	}
@@ -255,6 +268,7 @@ public class ClientServlet extends HttpServlet {
 		int capacite = Integer.parseInt(request.getParameter("capacite"));
 		double tarif = Double.parseDouble(request.getParameter("tarif"));
 		
+		
 		Part filePart = request.getPart("image");		
 		//get selected image file name
     	String imgName = filePart.getSubmittedFileName();
@@ -281,7 +295,7 @@ public class ClientServlet extends HttpServlet {
 			} else {
 				System.out.println("Process Failed....");
 			}
-    		response.sendRedirect("dashboard");
+    		request.getRequestDispatcher("dashboard").forward(request, response);
     	} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -299,6 +313,78 @@ public class ClientServlet extends HttpServlet {
 		}
 		
 	}
+	
+	private void modifySalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleid");
+		salleReunion = salleReunionDaoImple.find(salleId);
+		
+		request.setAttribute("salle", salleReunion);
+		request.getRequestDispatcher("modify-salle.jsp").forward(request, response);
+	}
+	
+	private void updateSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleId");
+		String salleNom = request.getParameter("salleNom");
+		String localisation = request.getParameter("localisation");
+		int capacite = Integer.parseInt(request.getParameter("capacite"));
+		double tarif = Double.parseDouble(request.getParameter("tarif"));
+		
+		Part filePart = request.getPart("image");		
+		//get selected image file name
+    	String imgName = filePart.getSubmittedFileName();
+    	System.out.println("Selected image file name is "+imgName);    	
+    		
+		salleReunion = salleReunionDaoImple.find(salleId);
+		String imageDB = salleReunion.getSalleImage();
+		System.out.println("Retrieved image file name from Db "+imageDB);  
+		if (imageDB.equals(imgName)) {
+			salleReunion = new SalleReunion(salleId, salleNom, localisation, capacite, tarif, imgName);
+    		salleReunion = salleReunionDaoImple.update(salleReunion);
+    		if (salleReunion != null) {
+    			System.out.println("Successfully Updated....");
+			} else {
+				System.out.println("Updated Failed....");
+			}
+    		
+		} else {
+			String deleteImagePath = "C:/Users/Rettina/Documents/Concepteur Formation/Java-Progamming/MeetingRoomReservation/src/main/webapp/images/"+imageDB;
+			File file = new File(deleteImagePath);
+			if (file.delete()) {
+		        System.out.println("File deleted successfully");
+		    }
+		    else {
+		        System.out.println("Failed to delete the file");
+		    }		
+			//upload path where we have to upload our selected image
+	    	String uploadPath = "C:/Users/Rettina/Documents/Concepteur Formation/Java-Progamming/MeetingRoomReservation/src/main/webapp/images/"+imgName;
+	    	System.out.println("upload path : "+uploadPath);
+			
+	    	//uploading our selected image into image folder
+	    	try {
+	    		FileOutputStream fos = new FileOutputStream(uploadPath);
+	    		InputStream iStream = filePart.getInputStream();
+	    		
+	    		byte[] data = new byte[iStream.available()];
+	    		iStream.read(data);
+	    		fos.write(data);
+	    		fos.close();
+	    		
+	    		salleReunion = new SalleReunion(salleId, salleNom, localisation, capacite, tarif, imgName);
+	    		salleReunion = salleReunionDaoImple.update(salleReunion);
+	    		if (salleReunion != null) {
+	    			System.out.println("Successfully Updated....");
+				} else {
+					System.out.println("Updated Failed....");
+				}
+	    		
+	    	} catch (Exception e) {
+				e.printStackTrace();
+			}		
+		}
+		request.getRequestDispatcher("dashboard").forward(request, response);
+		
+	}
+
 	/********************** EMPLOYEE(USER) **************************************************************/
 	
 	private void loginEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -313,8 +399,8 @@ public class ClientServlet extends HttpServlet {
 			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
 			request.setAttribute("username", username);
-			
-			response.sendRedirect("dashboard");
+			request.getRequestDispatcher("dashboard").forward(request, response);
+			//response.sendRedirect("dashboard");
 		}
 		
 	}
@@ -383,7 +469,9 @@ public class ClientServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("idemployee"));
 		user.setId(id);
 		userDaoImple.delete(user);
-	}	
+	}
+	
+	/******************************** DASHBOARD **********************************/
 	private void dashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int countClients = clientDaoImple.countClient();
 		int countUsers = userDaoImple.countUser();

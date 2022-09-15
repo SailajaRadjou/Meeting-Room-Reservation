@@ -1,4 +1,4 @@
-<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white mt-5">
+<nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white mt-3">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
         <a href="dashboard" class="list-group-item list-group-item-action py-2 ripple active" aria-current="true">
@@ -37,12 +37,12 @@
 	    </a>	     		  
 			<span class="visually-hidden">Toggle Dropdown</span>		  
 			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="#">Ajoute un compte Employee</a></li>
+	            <li><a class="dropdown-item" href="add-employee">Ajoute un compte Employee</a></li>
 	            <!-- <li><a class="dropdown-item" href="#">Modifier le Profil</a></li> -->
-	            <li><a class="dropdown-item" href="#">Listes des Personnels</a></li>
+	            <li><a class="dropdown-item" href="employee-list">Listes des Personnels</a></li>
           	</ul>
         <a href="contact" class="list-group-item list-group-item-action py-2 ripple">
-	        <i class="fas fa-money-bill fa-fw me-3"></i>
+	        <i class="fas fa-envelope"></i>
 	        <span>Contact</span>
         </a>
           
@@ -75,7 +75,7 @@
       <a class="navbar-brand" href="#">
         <img
              src="https://cdn3.vectorstock.com/i/thumb-large/18/12/teamwork-people-united-logo-vector-911812.jpg"
-             height="55"
+             height="45"
              alt="Logo EZ-Meet"
              loading="lazy"
              />
@@ -109,13 +109,7 @@
              data-mdb-toggle="dropdown"
              aria-expanded="false"
              >
-            <img
-                 src="https://mdbootstrap.com/img/Photos/Avatars/img (31).jpg"
-                 class="rounded-circle"
-                 height="22"
-                 alt=""
-                 loading="lazy"
-                 />
+            Bonjour ${username}
           </a>
           <ul
               class="dropdown-menu dropdown-menu-end"

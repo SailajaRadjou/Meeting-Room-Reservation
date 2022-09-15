@@ -28,7 +28,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container mt-5 pt-4">
-	<h3 class="mt-5 text-center mb-5">Listes des Salle de Réunion</h3>
+	<h3 class="mt-5 text-center mb-5">Listes des Salle de Reunion</h3>
 	
 	
 	
@@ -59,13 +59,13 @@
 							        <i class="far fa-trash-alt mt-0"></i>
 							      </a>
 							      <a href="salle-detail?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
-							        <i class="fas fa-info-circle mt-0"></i>
+							        <i class="fas fa-plus-circle"></i>
 							      </a>
 					    	</span>
 					   </div> 	
-					    <h6 class="card-title">${salle.getTarif()} €</h6>
+					    <h6 class="card-title">${salle.getTarif()} <i class="fas fa-euro-sign"></i> /heure</h6>
 					    <p class="card-text">Explore flexible meeting rooms  situated in the heart of ${salle.getLocalisation()}.</p>
-					    <a href="#!" class="btn btn-primary">Réservez dès maintenant</a>
+					    <a href="#!" class="btn btn-primary">Reservez maintenant</a>
 					  </div>
 				</div>	  
 			</div>
