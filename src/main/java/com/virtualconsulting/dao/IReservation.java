@@ -14,7 +14,7 @@ public interface IReservation {
 	ArrayList<Reservation> getAll(int clientId);
 	ArrayList<Reservation> getAll(String salleId);
 	
-	Reservation search(String nom, String prenom);
+	int searchReservation(String nom, String prenom);
 	
 	Reservation find(int reserveId);
 	int countReservation();

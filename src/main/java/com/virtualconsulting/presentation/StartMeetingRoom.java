@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.sql.Time;
 import java.time.Duration;
 import java.time.LocalTime;
+import java.util.ArrayList;
 
 import com.virtualconsulting.dao.ClientDaoImple;
 import com.virtualconsulting.dao.ReservationDaoImpl;
@@ -44,10 +45,23 @@ public class StartMeetingRoom {
 		
 		Reservation reservation;
 		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
+		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 		
-		reservation = reservationDaoImpl.find(3);
+		//reservations = reservationDaoImpl.getAll();
+		//reservations = reservationDaoImpl.getAll(1); 
+		reservations = reservationDaoImpl.getAll("SR100");
+		for (Reservation reservation2 : reservations) {
+			System.out.println(reservation2);
+		}
+		//System.out.println(reservationDaoImpl.countReservation());
+		int id = reservationDaoImpl.searchReservation("cyril", "smiley");
+		reservation = reservationDaoImpl.find(id);
+		System.out.println(reservation);
 		
-		cl = cdi.find(1);
+		
+		//reservation = reservationDaoImpl.find(3);
+		
+		/*cl = cdi.find(1);
 		sr = salleDao.find("SR102");
 		
 		int hour, mins;
@@ -70,8 +84,8 @@ public class StartMeetingRoom {
         System.out.println(hour);
         
         		
-		/*reservation = new Reservation(Date.valueOf("2022-10-20"), Time.valueOf(time1), Time.valueOf(time2), "Buisness Meeting", montant, cl, sr);
-		reservation = reservationDaoImpl.update(reservation);*/
+		reservation = new Reservation(Date.valueOf("2022-10-20"), Time.valueOf(time1), Time.valueOf(time2), "Buisness Meeting", montant, cl, sr);
+		reservation = reservationDaoImpl.update(reservation);
 		
 		if (reservation != null) {
 			reservation.setHeureFin(Time.valueOf("14:30:00"));
@@ -80,7 +94,7 @@ public class StartMeetingRoom {
 			System.out.println(reservation);
 		} else {
 			System.out.println("failed");
-		}
+		}*/
 		
 		/*String time1 = "09:30:00";
         String time2 = "10:45:00";

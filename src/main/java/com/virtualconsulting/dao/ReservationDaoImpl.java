@@ -139,6 +139,7 @@ public class ReservationDaoImpl implements IReservation {
 			while (rSet.next()) {
 				client = clientDaoImple.find(rSet.getInt("client_id"));
 				salle = salleDaoImple.find(rSet.getString("salle_id"));
+				reservation = new Reservation();
 				reservation.setReserveId(rSet.getInt("reserve_id"));
 				reservation.setDateReserve(rSet.getDate("date"));
 				reservation.setHeureDebut(rSet.getTime("heure_debut"));
@@ -157,11 +158,6 @@ public class ReservationDaoImpl implements IReservation {
 		return reservations;
 	}
 
-	@Override
-	public Reservation search(String nom, String prenom) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
 	@Override
 	public ArrayList<Reservation> getAll(int clientId) {
@@ -176,6 +172,7 @@ public class ReservationDaoImpl implements IReservation {
 			while (rSet.next()) {
 				client = clientDaoImple.find(rSet.getInt("client_id"));
 				salle = salleDaoImple.find(rSet.getString("salle_id"));
+				reservation = new Reservation();
 				reservation.setReserveId(rSet.getInt("reserve_id"));
 				reservation.setDateReserve(rSet.getDate("date"));
 				reservation.setHeureDebut(rSet.getTime("heure_debut"));
@@ -207,6 +204,7 @@ public class ReservationDaoImpl implements IReservation {
 			while (rSet.next()) {
 				client = clientDaoImple.find(rSet.getInt("client_id"));
 				salle = salleDaoImple.find(rSet.getString("salle_id"));
+				reservation = new Reservation();
 				reservation.setReserveId(rSet.getInt("reserve_id"));
 				reservation.setDateReserve(rSet.getDate("date"));
 				reservation.setHeureDebut(rSet.getTime("heure_debut"));
@@ -225,6 +223,27 @@ public class ReservationDaoImpl implements IReservation {
 		return reservations;
 	}
 
+	@Override
+	public int searchReservation(String nom, String prenom) {
+		int clientId = 0;
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("SELECT DISTINCT client_id FROM reservation NATURAL JOIN client WHERE nom = ? and prenom = ?");
+			
+			pStmt.setString(1, nom);
+			pStmt.setString(2, prenom);
+			ResultSet rSet = pStmt.executeQuery();
+			if(rSet.next()) {
+				clientId = rSet.getInt("client_id");
+			}
+			pStmt.close();
+			return clientId;
+		}	
+		catch (Exception e) {
+			System.err.println(e);
+		}
+		return 0;
+	}	
+	
 	@Override
 	public Reservation find(int reserveId) {
 		try {
