@@ -53,7 +53,7 @@
   <!-- Navbar -->
 
   <!-- Background image -->
-  <div class="p-5 text-center bg-image" style="background-image: url('images/jumbotron.jpg'); height: 400px;">
+  <div class="p-5 text-center bg-image" style="background-image: url('http://localhost:8080/MeetingRoomReservation/images/jumbotron.jpg'); height: 400px;">
     <div class="mask">
       <div class="d-flex justify-content-center align-items-center h-100">
         <div class="text-white">

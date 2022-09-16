@@ -43,7 +43,7 @@
 			<div class="card h-100" style="border-top: 5px solid #33b5e5;">
 				<div class="col-md-12 col-4">
 				  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-				    <img src="images/${salle.getSalleImage()}" class='img-fluid rounded-start' style="height: 280px; width: 100%;"/>
+				    <img src="http://localhost:8080/MeetingRoomReservation/images/${salle.getSalleImage()}" class='img-fluid rounded-start' style="height: 280px; width: 100%;"/>
 				    
 				  </div>
 				 </div> 

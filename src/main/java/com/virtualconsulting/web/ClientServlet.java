@@ -76,7 +76,7 @@ public class ClientServlet extends HttpServlet {
 		
 		case "/delete-employee":
 			deleteEmployee(request, response);
-			response.sendRedirect("employee-list");
+			request.getRequestDispatcher("employee-list").forward(request, response);			
 			break;
 			
 		case "/loginClient":
@@ -117,7 +117,7 @@ public class ClientServlet extends HttpServlet {
 		
 		case "/delete-client":
 			deleteClient(request, response);
-			response.sendRedirect("client-list");
+			request.getRequestDispatcher("client-list").forward(request, response);			
 			break;
 			
 		case "/add-salle":
@@ -399,8 +399,7 @@ public class ClientServlet extends HttpServlet {
 			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
 			request.setAttribute("username", username);
-			request.getRequestDispatcher("dashboard").forward(request, response);
-			//response.sendRedirect("dashboard");
+			request.getRequestDispatcher("dashboard").forward(request, response);			
 		}
 		
 	}
