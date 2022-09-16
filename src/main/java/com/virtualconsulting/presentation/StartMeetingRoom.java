@@ -45,6 +45,8 @@ public class StartMeetingRoom {
 		Reservation reservation;
 		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
 		
+		reservation = reservationDaoImpl.find(3);
+		
 		cl = cdi.find(1);
 		sr = salleDao.find("SR102");
 		
@@ -52,7 +54,7 @@ public class StartMeetingRoom {
 
 		double montant;
 		String time1 = "12:30:00";
-		String time2 = "16:30:00";
+		String time2 = "14:30:00";
 		
         long diffs = Duration.between(LocalTime.parse(time1), LocalTime.parse(time2)).toMinutes();
         
@@ -68,10 +70,13 @@ public class StartMeetingRoom {
         System.out.println(hour);
         
         		
-		reservation = new Reservation(Date.valueOf("2022-10-20"), Time.valueOf(time1), Time.valueOf(time2), "Buisness Meeting", montant, cl, sr);
-		reservation = reservationDaoImpl.save(reservation);
+		/*reservation = new Reservation(Date.valueOf("2022-10-20"), Time.valueOf(time1), Time.valueOf(time2), "Buisness Meeting", montant, cl, sr);
+		reservation = reservationDaoImpl.update(reservation);*/
 		
 		if (reservation != null) {
+			reservation.setHeureFin(Time.valueOf("14:30:00"));
+			reservation.setMontant(montant);
+			reservation = reservationDaoImpl.update(reservation);
 			System.out.println(reservation);
 		} else {
 			System.out.println("failed");

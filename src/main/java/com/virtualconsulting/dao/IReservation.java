@@ -11,6 +11,9 @@ public interface IReservation {
 	int delete(Reservation reservation);
 	
 	ArrayList<Reservation> getAll();
+	ArrayList<Reservation> getAll(int clientId);
+	ArrayList<Reservation> getAll(String salleId);
+	
 	Reservation search(String nom, String prenom);
 	
 	Reservation find(int reserveId);
