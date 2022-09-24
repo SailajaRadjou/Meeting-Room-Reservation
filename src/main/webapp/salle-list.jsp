@@ -18,6 +18,21 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.css"
   rel="stylesheet"
 />
+<!-- <link
+  href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css"
+  rel="stylesheet"
+/> -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha3/dist/css/bootstrap.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" crossorigin="anonymous" />
+
+<script src="https://rawgit.com/moment/moment/2.29.4/min/moment.min.js"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+  
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script> 
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js" crossorigin="anonymous"></script> -->
+
 <%@ include file = "css/style.jsp"%>
 <%@ include file = "css/home-style.jsp"%>
 <title>Meeting Room Reservation</title>
@@ -65,7 +80,9 @@
 					   </div> 	
 					    <h6 class="card-title">${salle.getTarif()} <i class="fas fa-euro-sign"></i> /heure</h6>
 					    <p class="card-text">Explore flexible meeting rooms  situated in the heart of ${salle.getLocalisation()}.</p>
-					    <a href="#!" class="btn btn-primary">Reservez maintenant</a>
+					    <!-- <a href="#!" class="btn btn-primary">Reservez maintenant</a> -->
+					    <%@ include file = "layout/reservation-modal.jsp" %>	
+					   			
 					  </div>
 				</div>	  
 			</div>
@@ -74,9 +91,11 @@
 	</div>	
 	
 </div>
+ <%@ include file = "scripts/date-time-picker.jsp"%> 
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"
 ></script>
+
 </body>
 </html>
