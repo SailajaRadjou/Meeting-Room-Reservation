@@ -2,7 +2,7 @@
 <div class="row row-cols-1 row-cols-md-3 g-4">
   <div class="col">
     <div class="card h-100">
-      <img src="images/Beautiful.jpg" class="card-img-top" alt="Lyon" />
+      <img src="http://localhost:8080/MeetingRoomReservation/images/Beautiful.jpg" class="card-img-top" alt="Lyon" />
       <div class="card-body">
         <!--  -->
         <p class="card-text">
@@ -19,7 +19,7 @@
   </div>
   <div class="col">
     <div class="card h-100">
-      <img src="images/front.jpg" class="card-img-top" alt="Paris" />
+      <img src="http://localhost:8080/MeetingRoomReservation/images/front.jpg" class="card-img-top" alt="Paris" />
       <div class="card-body">
         
         <p class="card-text">
@@ -36,7 +36,7 @@
   </div>
   <div class="col">
     <div class="card h-100">
-      <img src="images/original.jpg" class="card-img-top" alt="Toulouse"/>
+      <img src="http://localhost:8080/MeetingRoomReservation/images/original.jpg" class="card-img-top" alt="Toulouse"/>
       <div class="card-body">
         
         <p class="card-text">

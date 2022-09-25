@@ -1,6 +1,6 @@
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
-  Réservez Maintenant
+  Launch demo modal
 </button>
 
 <!-- Modal -->
@@ -14,14 +14,8 @@
       <div class="modal-body">
 		<form action="">      
 	      	<div class="row">
-	      		<div class="form-group col-md-4">
-				<label for="typeText">Tarif horaire</label>
-					<div class="input-group">
-					  <input type="text" id="typeText" class="form-control" readonly/>					  
-					</div>
-				</div>
-	      		<div class="form-group col-md-8">
-			      <label for="date">Date de réservation</label>
+	      		<div class="form-group col-md-6">
+			      <label for="date">Date</label>
 				     <div class="input-group date" id="datepicker">
 				        <input type="text" class="form-control" id="date"/>
 				        <span class="input-group-append">
@@ -30,12 +24,10 @@
 				          </span>
 				        </span>
 				      </div>
-				</div>
-			</div>	
-			<div class="row">			   
+				</div>			   
 			    <div class="form-group col-md-6">
-			      <label for="time">De : </label>
-			      <div class="input-group time" id="timePicker1">
+			      <label for="time">Time</label>
+			      <div class="input-group date" id="timePicker">
 			        <input type="text" class="form-control timePicker">
 			        <span class="input-group-addon">
 			        	<span class="input-group-text bg-light d-block">
@@ -44,36 +36,8 @@
 			        </span>	
 			      </div>
 			    </div>
-			    <div class="form-group col-md-6">
-			      <label for="time">À : </label>
-			      <div class="input-group time" id="timePicker2">
-			        <input type="text" class="form-control timePicker">
-			        <span class="input-group-addon">
-			        	<span class="input-group-text bg-light d-block">
-			        		<i class="fa fa-clock-o" aria-hidden="true"></i>
-			        	</span>
-			        </span>	
-			      </div>
-			    </div>
-			</div> 
-			<div class="row">
-				<div class="form-group col-md-8">
-				<label for="motifText">Motif de réservation</label>
-					<div class="input-group">
-					  <input type="text" id="motifText" class="form-control" />					  
-					</div>
-				</div>
-			</div>  
-			<div class="row">
-				<div class="form-group col-md-8">
-				<label for="montantText">Montant à payer</label>
-					<div class="input-group">
-					  <input type="text" id="montantText" class="form-control" />					  
-					</div>
-				</div>
-			</div>  
+			</div>   
   		</form>
-  		
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
