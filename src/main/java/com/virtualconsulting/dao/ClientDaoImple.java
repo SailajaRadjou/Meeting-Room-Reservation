@@ -255,5 +255,34 @@ public class ClientDaoImple implements IClientDao{
 		}
 		return 0;
 	}
+	
+	//to get the status
+		@Override
+		public int find(String username) {
+			int statut;
+			try {
+				PreparedStatement pStmt = conn.prepareStatement("select statut from client where nom_identifiant = ?");
+				
+				pStmt.setString(1, username);
+				
+				
+				ResultSet rSet = pStmt.executeQuery();
+				System.out.println("executed");
+				
+				if(rSet.next()) {
+					
+					statut = rSet.getInt("statut");
+					return statut;
+				}
+				
+				pStmt.close();
+				
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+			
+			return 0;
+		}
+
 
 }

@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,7 +25,11 @@ import com.virtualconsulting.metier.User;
 @MultipartConfig
 public class ClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+     
+	Cookie cookie;
+	String username;
+	int statut;
+	
     Client client;
     ClientDaoImple clientDaoImple = new ClientDaoImple();
     ArrayList<Client> clients;
@@ -38,6 +43,9 @@ public class ClientServlet extends HttpServlet {
     ArrayList<SalleReunion> salleReunions;    
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		Cookie cookies[] = request.getCookies();
+		
 		String path = request.getServletPath();
 		//System.out.println(path);
 		
@@ -59,6 +67,8 @@ public class ClientServlet extends HttpServlet {
 			break;
 			
 		case "/add-employee":
+			getCookie(cookies);
+			request.setAttribute("username", username);
 			request.getRequestDispatcher("add-employee.jsp").forward(request, response);
 			break;
 		
@@ -96,6 +106,9 @@ public class ClientServlet extends HttpServlet {
 			break;
 			
 		case "/add-client":
+			getCookie(cookies);
+			request.setAttribute("username", username);
+			
 			request.getRequestDispatcher("add-client.jsp").forward(request, response);
 			break;
 			
@@ -121,6 +134,8 @@ public class ClientServlet extends HttpServlet {
 			break;
 			
 		case "/add-salle":
+			getCookie(cookies);
+			request.setAttribute("username", username);
 			request.getRequestDispatcher("add-salle.jsp").forward(request, response);
 			break;
 			
@@ -160,6 +175,17 @@ public class ClientServlet extends HttpServlet {
 		doGet(request, response);
 	}
 	
+	//method for getting particular value in the cookie
+		private String getCookie(Cookie[] cookies) {
+			for (Cookie c : cookies) {
+				if(c.getName().equals("username"))
+					username = c.getValue();
+				
+			}
+			return username;
+			
+		}
+	
 	/********************** CLIENT **************************************************************/
 	private void clientList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		clients = clientDaoImple.getAll();
@@ -171,6 +197,17 @@ public class ClientServlet extends HttpServlet {
 			System.out.println("cannot recupere");
 		}
 		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);				
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+				
+		request.setAttribute("statut", statut);
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		System.out.println("username : "+username);
 		request.setAttribute("clients", clients);
 		request.getRequestDispatcher("list-client.jsp").forward(request, response);
 	}
@@ -179,14 +216,30 @@ public class ClientServlet extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println(username+" "+password);
-		client = clientDaoImple.find(username, password);
+		client = clientDaoImple.find(username, password);		
+		
+		//creating cookie object
+		cookie = new Cookie("username", username);
+		//adding cookie in the response  
+		response.addCookie(cookie);
+		
 		//System.out.println(client.getNom());
 		if (client == null) {
 			String msg = "Enter correct username & password";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
+			//retrieving cookies 
+			Cookie cookies[] = request.getCookies();
+			//calling functions for getting particular cookies
+			getCookie(cookies);
+							
+			//setting username received from getCookie()
 			request.setAttribute("username", username);
+			//to get status of the particular user who logged in
+			statut = clientDaoImple.find(username);	
+						
+			request.setAttribute("statut", statut);
 			
 			request.getRequestDispatcher("dashboard").forward(request, response);
 		}
@@ -219,6 +272,18 @@ public class ClientServlet extends HttpServlet {
 			      
 		request.setAttribute("client", client);
 		request.setAttribute("password", convertPassword);
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+						
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+					
+		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("client-confirme.jsp").forward(request, response);
 	}
 	
@@ -226,6 +291,18 @@ public class ClientServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("idclient"));
 		client = clientDaoImple.find(id);
 		System.out.println(client.getClientId()+ " Client ID");
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+						
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+					
+		request.setAttribute("statut", statut);
 		request.setAttribute("client", client);
 		request.getRequestDispatcher("modify-client.jsp").forward(request, response);
 	}
@@ -250,6 +327,18 @@ public class ClientServlet extends HttpServlet {
 		
 		request.setAttribute("client", client);
 		request.setAttribute("password", client.getPassword());
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+						
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+					
+		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("client-confirme.jsp").forward(request, response);
 	}
 	
@@ -308,6 +397,7 @@ public class ClientServlet extends HttpServlet {
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("warning-page.jsp").forward(request, response);			
 		} else {
+			
 			request.setAttribute("salles", salleReunions);
 			request.getRequestDispatcher("salle-list.jsp").forward(request, response);
 		}
@@ -393,12 +483,27 @@ public class ClientServlet extends HttpServlet {
 		System.out.println(username+" "+password);
 		user = userDaoImple.find(username, password);
 		//System.out.println(client.getNom());
+		
+		//creating cookie object
+		cookie = new Cookie("username", username);
+		//adding cookie in the response  
+		response.addCookie(cookie);
 		if (user == null) {
 			String msg = "Enter correct username & password";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
+			//retrieving cookies 
+			Cookie cookies[] = request.getCookies();
+			//calling functions for getting particular cookies
+			getCookie(cookies);
+									
+			//setting username received from getCookie()
 			request.setAttribute("username", username);
+			
+			//to get status of the particular user who logged in
+			statut = userDaoImple.find(username);								
+			request.setAttribute("statut", statut);
 			request.getRequestDispatcher("dashboard").forward(request, response);			
 		}
 		
@@ -429,18 +534,54 @@ public class ClientServlet extends HttpServlet {
 	      convertPassword = sb.toString();
 	      System.out.println(convertPassword);
 		
+	      //retrieving cookies 
+	      Cookie cookies[] = request.getCookies();
+		  //calling functions for getting particular cookies
+		  getCookie(cookies);
+									
+		  //setting username received from getCookie()
+		  request.setAttribute("username", username);
+			
+		  //to get status of the particular user who logged in
+		  statut = userDaoImple.find(username);								
+		  request.setAttribute("statut", statut);
+	      
 		request.setAttribute("user", user);
 		request.setAttribute("password", convertPassword);
 		request.getRequestDispatcher("user-confirme.jsp").forward(request, response);
 	}
 	private void listEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		users = userDaoImple.getAll();
-		request.setAttribute("users", users);		
+		request.setAttribute("users", users);
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+										
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+				
+		//to get status of the particular user who logged in
+		statut = userDaoImple.find(username);								
+		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("list-employee.jsp").forward(request, response);
 	}
 	private void modifyEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("idemployee"));
 		user = userDaoImple.find(id);
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+										
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+				
+		//to get status of the particular user who logged in
+		statut = userDaoImple.find(username);								
+		request.setAttribute("statut", statut);
 		request.setAttribute("user", user);
 		request.getRequestDispatcher("modify-employee.jsp").forward(request, response);
 	}
@@ -461,6 +602,19 @@ public class ClientServlet extends HttpServlet {
 		user = userDaoImple.update(user);
 		request.setAttribute("user", user);
 		request.setAttribute("password", user.getPassword());
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+								
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		
+		//to get status of the particular user who logged in
+		statut = userDaoImple.find(username);								
+		request.setAttribute("statut", statut);
+		
 		request.getRequestDispatcher("user-confirme.jsp").forward(request, response);
 		
 	}
@@ -479,11 +633,33 @@ public class ClientServlet extends HttpServlet {
 		request.setAttribute("no_of_clients", countClients);
 		request.setAttribute("no_of_personnels", countUsers);
 		request.setAttribute("no_of_salles", countSalles);
-		//request.setAttribute("comptes_epargne", countEpargne);
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+						
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+					
+		request.setAttribute("statut", statut);
+		
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 	}
 	private void contact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+						
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = clientDaoImple.find(username);	
+					
+		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("contact.jsp").forward(request, response);
 	}
 

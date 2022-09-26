@@ -40,23 +40,25 @@ public class StartMeetingRoom {
 		Client cl;
 		ClientDaoImple cdi = new ClientDaoImple();
 		
-		SalleReunion sr;
-		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
+		System.out.println(cdi.find("smiley"));
 		
-		Reservation reservation;
-		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
-		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		
-		//reservations = reservationDaoImpl.getAll();
-		//reservations = reservationDaoImpl.getAll(1); 
-		reservations = reservationDaoImpl.getAll("SR100");
-		for (Reservation reservation2 : reservations) {
-			System.out.println(reservation2);
-		}
-		//System.out.println(reservationDaoImpl.countReservation());
-		int id = reservationDaoImpl.searchReservation("cyril", "smiley");
-		reservation = reservationDaoImpl.find(id);
-		System.out.println(reservation);
+//		SalleReunion sr;
+//		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
+//		
+//		Reservation reservation;
+//		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
+//		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+//		
+//		//reservations = reservationDaoImpl.getAll();
+//		//reservations = reservationDaoImpl.getAll(1); 
+//		reservations = reservationDaoImpl.getAll("SR100");
+//		for (Reservation reservation2 : reservations) {
+//			System.out.println(reservation2);
+//		}
+//		//System.out.println(reservationDaoImpl.countReservation());
+//		int id = reservationDaoImpl.searchReservation("cyril", "smiley");
+//		reservation = reservationDaoImpl.find(id);
+//		System.out.println(reservation);
 		
 		
 		//reservation = reservationDaoImpl.find(3);
