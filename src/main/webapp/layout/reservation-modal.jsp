@@ -1,5 +1,7 @@
+
+
 <!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+<button type="button" class="btn btn-primary reservation" data-mdb-toggle="modal" data-mdb-target="#exampleModal" data-id="${salle.getSalleId()}">
   Réservez Maintenant
 </button>
 
@@ -11,13 +13,15 @@
         <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-		<form action="">      
+      
+      
+      <form method="post" action="save-reservation">  
+      	<div class="modal-body">		    
 	      	<div class="row">
 	      		<div class="form-group col-md-4">
 				<label for="typeText">Tarif horaire</label>
 					<div class="input-group">
-					  <input type="text" id="typeText" class="form-control" readonly/>					  
+					  <input type="text" id="salleId" class="form-control" readonly />					  
 					</div>
 				</div>
 	      		<div class="form-group col-md-8">
@@ -71,16 +75,18 @@
 					  <input type="text" id="montantText" class="form-control" />					  
 					</div>
 				</div>
-			</div>  
-  		</form>
+			</div>
+			  
   		
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
+	  		<div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
+	          Close
+	        </button>
+	        <button type="submit" class="btn btn-primary">Save changes</button>
+	      </div>
+      	</div>
+      </form>
     </div>
   </div>
 </div>
+

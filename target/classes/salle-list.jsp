@@ -44,10 +44,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container mt-5 pt-4">
-	<h3 class="mt-5 text-center mb-5">Listes des Salle de Reunion</h3>
-	
-	
-	
+	<h3 class="mt-5 text-center mb-5">Listes des Salle de Reunion</h3>	
 	<c:set var="image" scope="request" value="${salle.getSalleImage()}"/>
 	<%-- <c:out value="${image}"/> --%>
 	<%
@@ -67,6 +64,7 @@
 					  <div class="card-body">
 						<div class="d-flex justify-content-between">					  
 						    <h5 class="card-title">${salle.getSalleNom()}</h5>
+						    
 						    <span>
 							      <a href="modify-salle?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
 							        <i class="fas fa-pencil-alt mt-0"></i>
@@ -81,9 +79,9 @@
 					   </div> 	
 					    <h6 class="card-title">${salle.getTarif()} <i class="fas fa-euro-sign"></i> /heure</h6>
 					    <p class="card-text">Explore flexible meeting rooms  situated in the heart of ${salle.getLocalisation()}.</p>
-					    <!-- <a href="#!" class="btn btn-primary">Reservez maintenant</a> -->
-					    <%@ include file = "layout/reservation-modal.jsp" %>	
-					   			
+					    <a href="salle-reservation?salleid=${salle.getSalleId()}" class="btn btn-primary">Reservez maintenant</a> 
+					 	
+					   	
 					  </div>
 				</div>	  
 			</div>
@@ -93,6 +91,13 @@
 	
 </div>
  <%@ include file = "scripts/date-time-picker.jsp"%> 
+ <!-- <script type="text/javascript">//for modal
+							$(".reservation").on("click", function () {
+							    var id = $(this).data('id');
+							    console.log(id);
+							    $(".modal-body #salleId").val( id );
+							});
+						</script> -->		
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"

@@ -283,6 +283,31 @@ public class ClientDaoImple implements IClientDao{
 			
 			return 0;
 		}
-
+		//to get the Client Id
+		@Override
+		public int findClientId(String username) {
+			int clientId;
+			try {
+					PreparedStatement pStmt = conn.prepareStatement("select client_id from client where nom_identifiant = ?");
+						
+					pStmt.setString(1, username);
+						
+					ResultSet rSet = pStmt.executeQuery();
+					System.out.println("executed");
+						
+					if(rSet.next()) {
+							
+						clientId = rSet.getInt("client_id");
+						return clientId;
+					}
+						
+					pStmt.close();
+						
+				} catch (Exception e) {
+					System.err.println(e);
+				}
+					
+				return 0;
+		}
 
 }

@@ -158,6 +158,14 @@ public class ClientServlet extends HttpServlet {
 		case "/delete-salle":
 			
 			break;
+		
+		case "/salle-reservation":
+			salleReservation(request, response);
+			break;
+		
+		case "/save-reservation":
+			saveReservation(request, response);
+			break;
 			
 		case "/home-page":
 			request.getRequestDispatcher("home-page.jsp").forward(request, response);
@@ -474,7 +482,38 @@ public class ClientServlet extends HttpServlet {
 		request.getRequestDispatcher("dashboard").forward(request, response);
 		
 	}
+	
+	/******************************** RESERVATION **********************************/
+	
+	private void salleReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleid");
+		salleReunion = salleReunionDaoImple.find(salleId);
+		
+		request.setAttribute("salle", salleReunion);
+		request.getRequestDispatcher("salle-reservation.jsp").forward(request, response);
+	}
 
+	private void saveReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleid");
+		String username = request.getParameter("username");
+		int clientId = clientDaoImple.findClientId(username);
+		System.out.println("salleId "+salleId);
+		System.out.println("clientId "+clientId);
+		String dateReserve = request.getParameter("reserveDate");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		String motif = request.getParameter("motif");
+		double montant = Double.parseDouble(request.getParameter("montant"));
+		System.out.println("salleId "+salleId);
+		System.out.println("clientId "+clientId);
+		System.out.println("dateReserve "+dateReserve);
+		System.out.println("startTime "+startTime);
+		System.out.println("endTime "+endTime);
+		System.out.println("motif "+motif);
+		System.out.println("montant "+montant);
+		/*request.setAttribute("salle", salleReunion);
+		request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);*/
+	}
 	/********************** EMPLOYEE(USER) **************************************************************/
 	
 	private void loginEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -623,7 +662,7 @@ public class ClientServlet extends HttpServlet {
 		user.setId(id);
 		userDaoImple.delete(user);
 	}
-	
+		
 	/******************************** DASHBOARD **********************************/
 	private void dashboard(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int countClients = clientDaoImple.countClient();
