@@ -31,8 +31,8 @@
 	<div class="card container" style="width: 30rem;">
 	  <div class="card-header px-3">Reservation Confirmer</div>
 	  <ul class="list-group list-group-light list-group-small">
-	    <li class="list-group-item px-3">#Client Id&emsp;:&emsp;${client.getClientId()}</li>
-	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${client.getNom()}</li>
+	    <li class="list-group-item px-3">#Client Id&emsp;:&emsp;${reservation.getClientId()}</li>
+	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${reservation.getNom()}</li>
 	    <li class="list-group-item px-3">Prenom&emsp;:&emsp;${client.getPrenom()}</li>
 	    <li class="list-group-item px-3">Nom de l'entreprise&emsp;:&emsp;${client.getNomEntreprise()}</li>
 	    <li class="list-group-item px-3">Email&emsp;:&emsp;${client.getMail()}</li>

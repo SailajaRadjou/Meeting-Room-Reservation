@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import javax.servlet.ServletException;
@@ -16,9 +18,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
 import com.virtualconsulting.dao.ClientDaoImple;
+import com.virtualconsulting.dao.ReservationDaoImpl;
 import com.virtualconsulting.dao.SalleReunionDaoImple;
 import com.virtualconsulting.dao.UserDaoImple;
 import com.virtualconsulting.metier.Client;
+import com.virtualconsulting.metier.Reservation;
 import com.virtualconsulting.metier.SalleReunion;
 import com.virtualconsulting.metier.User;
 
@@ -40,7 +44,11 @@ public class ClientServlet extends HttpServlet {
     
     SalleReunion salleReunion;
     SalleReunionDaoImple salleReunionDaoImple = new SalleReunionDaoImple();
-    ArrayList<SalleReunion> salleReunions;    
+    ArrayList<SalleReunion> salleReunions;  
+    
+    Reservation reservation;
+    ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
+    ArrayList<Reservation> reservations;
        
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -60,6 +68,10 @@ public class ClientServlet extends HttpServlet {
 			
 		case "/table":
 			request.getRequestDispatcher("table.jsp").forward(request, response);
+			break;
+		
+		case "/agenda-reservation":
+			listReservation(request, response);			
 			break;
 			
 		case "/employee-list":
@@ -497,8 +509,10 @@ public class ClientServlet extends HttpServlet {
 		String salleId = request.getParameter("salleid");
 		String username = request.getParameter("username");
 		int clientId = clientDaoImple.findClientId(username);
-		System.out.println("salleId "+salleId);
-		System.out.println("clientId "+clientId);
+		
+		client = clientDaoImple.find(clientId);
+		salleReunion = salleReunionDaoImple.find(salleId);
+		
 		String dateReserve = request.getParameter("reserveDate");
 		String startTime = request.getParameter("startTime");
 		String endTime = request.getParameter("endTime");
@@ -511,8 +525,18 @@ public class ClientServlet extends HttpServlet {
 		System.out.println("endTime "+endTime);
 		System.out.println("motif "+motif);
 		System.out.println("montant "+montant);
-		/*request.setAttribute("salle", salleReunion);
-		request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);*/
+		
+		
+		reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
+		reservation = reservationDaoImpl.save(reservation);
+		request.setAttribute("reserve", reservation);
+		request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);
+	}
+	
+	private void listReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		reservations = reservationDaoImpl.getAll();
+		request.setAttribute("reservations", reservations);
+		request.getRequestDispatcher("reservation-agenda.jsp").forward(request, response);
 	}
 	/********************** EMPLOYEE(USER) **************************************************************/
 	

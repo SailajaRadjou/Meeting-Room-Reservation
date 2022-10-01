@@ -27,7 +27,7 @@
 	            <li><a class="dropdown-item" href="client-list">Listes des Clients</a></li>
           	</ul>
 		
-        <a href="#" class="list-group-item list-group-item-action py-2 ripple">
+        <a href="agenda-reservation" class="list-group-item list-group-item-action py-2 ripple">
         	<i class="fas fa-calendar fa-fw me-3"></i>
            <span>Reservation de la salle</span>
         </a>

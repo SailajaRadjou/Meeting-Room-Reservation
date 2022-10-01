@@ -25,6 +25,11 @@ body {
   }
 }
 
+#calendar {
+  max-width: 1100px;
+  margin: 40px auto;
+}
+
 /* Sidebar */
 .sidebar {
   position: fixed;

@@ -71,7 +71,7 @@
 	      		<div class="form-group col-md-6">
 				<label for="typeText">Tarif horaire</label>
 					<div class="input-group">
-					  <input type="text" id="tarif" class="form-control" readonly value = "${salle.getTarif()} euros /heure" />					  
+					  <input type="text" id="tarif" class="form-control" readonly value = "${salle.getTarif()}" />					  
 					</div>
 				</div>
 			</div>
@@ -103,7 +103,7 @@
 			    <div class="form-group col-md-6 bootstrap-timepicker">
 			      <label for="time">A : </label>
 			      <div class="input-group time" id="timePicker2">
-			        <input type="text" class="form-control timePicker" id="timeTo" name="endTime" onchange="getDiff(${salle.getTarif()})" />
+			        <input type="text" class="form-control timePicker" id="timeTo" name="endTime" onChange="getDiff()" />
 			        <span class="input-group-addon">
 			        	<span class="input-group-text bg-light d-block">
 			        		<i class="fa fa-clock-o" aria-hidden="true"></i>
