@@ -25,9 +25,36 @@ body {
   }
 }
 
+/* AGENDA */
 #calendar {
   max-width: 1100px;
   margin: 40px auto;
+}
+.fc-event-title{
+    white-space: normal;
+    overflow: visible !important;
+    text-overflow: ellipsis;
+    max-height:30px;
+    max-width: 100%;    
+    padding-left: 5px;
+    font-weight: bold;
+}
+.fc-daygrid-dot-event{
+    flex-wrap: wrap !important;
+    height: 5em;
+}
+.fc-daygrid-day-events{
+	min-height: 5em !important;
+	
+}
+.fc-daygrid-event{
+	font-size: 1rem !important;
+	color: white !important;
+}
+
+.fc-event-start{
+	background-color: #5833FF !important;
+	
 }
 
 /* Sidebar */

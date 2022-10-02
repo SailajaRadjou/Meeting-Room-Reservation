@@ -26,16 +26,17 @@
 		//this is the part  where i tested to create a json format
 		for (var i in reserveDates) {			
 		    evts.push({
-		        title: '\n'+evenements[i].innerText,
 		        start: new Date([reserveDates[i].textContent, startTimes[i].textContent]),
 		        end: new Date([reserveDates[i].textContent, endTimes[i].textContent]),
-		        		        
+		        title: "\n"+evenements[i].innerText,
+		        allDay: false
 		    });
 		    //console.log("local : "+new Date([reserveDates[i].textContent+startTimes[i].textContent]));
 		}
 		
 		  var calendar = new FullCalendar.Calendar(calendarEl, {
-			
+			  
+			  eventOrder: '-start',
 		    initialView: 'dayGridMonth',		    
 		    initialDate: new Date('2022-03-01'),		     
 		    themeSystem: "bootstrap",
@@ -43,7 +44,7 @@
 		      left: 'prev,next today',
 		      center: 'title',
 		      right: 'dayGridMonth,timeGridWeek,timeGridDay'
-		    },
+		    },		    
 		    timeZone: 'local',
 		    eventColor: '#6264A7',
 		    eventTextColor: '#fff',
@@ -54,8 +55,9 @@
 		        hour12: false
 		      }, 
 		   // displayEventTime: false,  
-			     displayEventEnd: true,
-			   
+			displayEventEnd: true,
+			editable: true,
+	        eventLimit: false, // allow "more" link when too many events    
 		    events: evts,	    	
 		    
 		  });
