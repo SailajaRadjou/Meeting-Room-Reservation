@@ -57,10 +57,10 @@
 		                            ${reservation.getDateReserve()}
 		                        </td>
 		                        <td class="agenda-time reserve-time-start">
-		                            ${reservation.getHeureDebut()} - ${reservation.getHeureFin()}
+		                            ${reservation.getHeureDebut()}
 		                        </td>
 		                        <td class="agenda-time reserve-time-end">
-		                            ${reservation.getHeureDebut()} - ${reservation.getHeureFin()}
+		                            ${reservation.getHeureFin()}
 		                        </td>
 		                        <td class="agenda-events">
 		                            <div class="agenda-event evenement">

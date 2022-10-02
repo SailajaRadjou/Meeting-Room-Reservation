@@ -3,87 +3,60 @@
 		  var calendarEl = document.getElementById('calendar');
 		  var reserveDates = document.querySelectorAll('.reserve-date');
 		  var evenements = document.querySelectorAll('.evenement');
-		  var evenReser = reserveDates[1].textContent;
-		  console.log("Reserve Date : "+ evenements[2].innerText);
-		  for (let x of evenements){
-			  console.log("Reserve Date : "+ x.textContent);
-		  }
+		  var startTimes = document.querySelectorAll('.reserve-time-start');
+		  var endTimes = document.querySelectorAll('.reserve-time-end');
 		  
+		  /*for (let x of times){
+			  console.log("Reserve Date : "+ x.textContent);
+		  }*/
+		  
+		  /* const dateFromPicker = "2022-03-20";
+		  const timeFromPicker = "12:30";
+
+		  const dateParts = dateFromPicker.split("-");
+		  const timeParts = timeFromPicker.split(":");
+		  const localDate = new Date(Date.parse(dateParts[0], dateParts[1]-1, dateParts[2], timeParts[0], timeParts[1]));
+		  /*localDate.setMinutes(localDate.getMinutes() + localDate.getTimezoneOffset());
+		  let dateStr = localDate.toDateString();*/
+		  
+		/* console.log("localDate : "+localDate.toISOString());  */
+		
+		
 		  var evts = []; // variable for events
 		//this is the part  where i tested to create a json format
-		for (var i = 1; i <= reserveDates.length; i++) {
-			//evenReser = evenements[i].innerText;
+		for (var i in reserveDates) {			
 		    evts.push({
-		        title: evenements[1].innerText,
-		        start: new Date(reserveDates[1].textContent),
-		        
+		        title: '\n'+evenements[i].innerText,
+		        start: new Date([reserveDates[i].textContent, startTimes[i].textContent]),
+		        end: new Date([reserveDates[i].textContent, endTimes[i].textContent]),
+		        		        
 		    });
+		    //console.log("local : "+new Date([reserveDates[i].textContent+startTimes[i].textContent]));
 		}
-		  
+		
 		  var calendar = new FullCalendar.Calendar(calendarEl, {
-		    initialView: 'dayGridMonth',
-		    initialDate: '2022-03-01',
+			
+		    initialView: 'dayGridMonth',		    
+		    initialDate: new Date('2022-03-01'),		     
 		    themeSystem: "bootstrap",
 		    headerToolbar: {
 		      left: 'prev,next today',
 		      center: 'title',
 		      right: 'dayGridMonth,timeGridWeek,timeGridDay'
 		    },
-		    
-		    events: evts
-		    	/*[
-		    		  	
-		      {
-		    	 
-		        title: 'All Day Event',
-		        
-		        start:  new Date(dateReser)
-		    	 
-		      },
-		    		
-		       {
-		        title: 'Long Event',
-		        start: '2022-08-07',
-		        end: '2022-08-10'
-		      },
-		      {
-		        
-		        title: 'Repeating Event',
-		        start: '2022-09-09'
-		      },
-		      {
-		        groupId: '999',
-		        title: 'Repeating Event',
-		        start: '2022-09-16T16:00:00'
-		      },
-		      {
-		        title: 'Conference',
-		        start: '2022-10-11',
-		        end: '2022-10-13'
-		      },
-		      {
-		        title: 'Meeting',
-		        start: '2022-10-12T10:30:00',
-		        end: '2022-10-12T12:30:00'
-		      },
-		      {
-		        title: 'Lunch',
-		        start: '2022-04-12T12:00:00'
-		      },
-		      {
-		        title: 'Meeting',
-		        start: '2022-04-12T14:30:00'
-		      },
-		      {
-		        title: 'Birthday Party',
-		        start: '2022-09-13T07:00:00'
-		      },
-		      {
-		        title: 'Click for Google',
-		        url: 'http://google.com/',
-		        start: '2022-10-28'
-		      } 
-		    ]*/
+		    timeZone: 'local',
+		    eventColor: '#6264A7',
+		    eventTextColor: '#fff',
+		  //eventTimeFormat: { hour: "numeric", minute: "2-digit", timeZoneName: "short" },
+		    eventTimeFormat: { // like '14:30'
+		        hour: 'numeric',
+		        minute: '2-digit',		        
+		        hour12: false
+		      }, 
+		   // displayEventTime: false,  
+			     displayEventEnd: true,
+			   
+		    events: evts,	    	
 		    
 		  });
 		  
