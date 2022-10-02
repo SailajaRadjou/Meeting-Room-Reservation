@@ -1,5 +1,7 @@
 package com.virtualconsulting.dao;
 
+import java.sql.Date;
+import java.sql.Time;
 import java.util.ArrayList;
 
 import com.virtualconsulting.metier.Reservation;
@@ -18,5 +20,6 @@ public interface IReservation {
 	
 	Reservation find(int reserveId);
 	int countReservation();
+	Reservation findReservation(Date dateReservation, String salleId, Time heureDebut);
 	
 }

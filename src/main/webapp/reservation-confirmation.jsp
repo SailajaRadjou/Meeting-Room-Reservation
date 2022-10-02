@@ -31,15 +31,14 @@
 	<div class="card container" style="width: 30rem;">
 	  <div class="card-header px-3">Reservation Confirmer</div>
 	  <ul class="list-group list-group-light list-group-small">
-	    <li class="list-group-item px-3">#Client Id&emsp;:&emsp;${reservation.getClientId()}</li>
-	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${reservation.getNom()}</li>
+	    <li class="list-group-item px-3">#Client Id&emsp;:&emsp;${reservation.getClient().getClientId()}</li>
+	    <li class="list-group-item px-3">Nom&emsp;:&emsp;${client.getNom()}</li>
 	    <li class="list-group-item px-3">Prenom&emsp;:&emsp;${client.getPrenom()}</li>
 	    <li class="list-group-item px-3">Nom de l'entreprise&emsp;:&emsp;${client.getNomEntreprise()}</li>
-	    <li class="list-group-item px-3">Email&emsp;:&emsp;${client.getMail()}</li>
-	    <li class="list-group-item px-3">Téléphone&emsp;:&emsp;${client.getPhone()}</li>
-	    <li class="list-group-item px-3">Civilite&emsp;:&emsp;${client.getCivilite()}</li>
-	    <li class="list-group-item px-3">Username&emsp;:&emsp;${client.getUsername()}</li>
-	    <li class="list-group-item px-3">Password&emsp;:&emsp;****${password}****</li>
+	    <li class="list-group-item px-3">Salle réservée&emsp;:&emsp;${salle.getSalleNom()}</li>
+	    <li class="list-group-item px-3">Date de Reservation&emsp;:&emsp;${reservation.getDateReserve()}</li>
+	    <li class="list-group-item px-3">Tarif à l'heure&emsp;:&emsp;${salle.getTarif()}</li>
+	    <li class="list-group-item px-3">Montant à Payer&emsp;:&emsp;${reservation.getMontant()}</li>	    
 	  </ul>
 	</div>
 </div>	

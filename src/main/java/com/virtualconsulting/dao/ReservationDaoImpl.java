@@ -1,6 +1,7 @@
 package com.virtualconsulting.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Time;
@@ -250,6 +251,42 @@ public class ReservationDaoImpl implements IReservation {
 			PreparedStatement pStmt = conn.prepareStatement("select * from reservation where reserve_id = ?");
 			
 			pStmt.setInt(1, reserveId);
+			
+			ResultSet rSet = pStmt.executeQuery();  
+			
+			if(rSet.next()) {
+				client = clientDaoImple.find(rSet.getInt("client_id"));
+				salle = salleDaoImple.find(rSet.getString("salle_id"));
+				reservation = new Reservation();
+				reservation.setReserveId(rSet.getInt("reserve_id"));
+				reservation.setDateReserve(rSet.getDate("date"));
+				reservation.setHeureDebut(rSet.getTime("heure_debut"));
+				reservation.setHeureFin(rSet.getTime("heure_fin"));
+				reservation.setMotif(rSet.getString("motif_reservation"));
+				reservation.setMontant(rSet.getDouble("montant"));
+				reservation.setClient(client);
+				reservation.setSalle(salle);
+				
+				pStmt.close();
+				return reservation;
+			}
+			
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		return null;
+	}
+	
+	//For finding whether anybody already reserved on this particular date for a particular room
+	@Override
+	public Reservation findReservation(Date dateReservation, String salleId, Time heureDebut) {
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("SELECT * FROM reservation WHERE date = ? and salle_id = ? and heure_debut = ?");
+			
+			
+			pStmt.setDate(1, dateReservation);
+			pStmt.setString(2, salleId);
+			pStmt.setTime(3, heureDebut);
 			
 			ResultSet rSet = pStmt.executeQuery();  
 			

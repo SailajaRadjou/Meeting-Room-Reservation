@@ -37,16 +37,16 @@ public class StartMeetingRoom {
 			System.out.println(u1);
 		}*/
 		
-		Client cl;
-		ClientDaoImple cdi = new ClientDaoImple();
-		
-		System.out.println(cdi.find("smiley"));
+//		Client cl;
+//		ClientDaoImple cdi = new ClientDaoImple();
+//		
+//		System.out.println(cdi.find("smiley"));
 		
 //		SalleReunion sr;
 //		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
 //		
-//		Reservation reservation;
-//		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
+		Reservation reservation;
+		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
 //		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 //		
 //		//reservations = reservationDaoImpl.getAll();
@@ -63,6 +63,8 @@ public class StartMeetingRoom {
 		
 		//reservation = reservationDaoImpl.find(3);
 		
+		reservation = reservationDaoImpl.findReservation(Date.valueOf("2022-06-20"), "SR101", Time.valueOf("08:00:00"));
+		System.out.println(reservation);
 		/*cl = cdi.find(1);
 		sr = salleDao.find("SR102");
 		

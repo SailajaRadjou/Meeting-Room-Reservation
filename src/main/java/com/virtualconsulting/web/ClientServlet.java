@@ -404,7 +404,7 @@ public class ClientServlet extends HttpServlet {
 			} else {
 				System.out.println("Process Failed....");
 			}
-    		request.getRequestDispatcher("dashboard").forward(request, response);
+    		request.getRequestDispatcher("salle-list").forward(request, response);
     	} catch (Exception e) {
 			e.printStackTrace();
 		}		
@@ -491,7 +491,7 @@ public class ClientServlet extends HttpServlet {
 				e.printStackTrace();
 			}		
 		}
-		request.getRequestDispatcher("dashboard").forward(request, response);
+		request.getRequestDispatcher("salle-list").forward(request, response);
 		
 	}
 	
@@ -526,11 +526,20 @@ public class ClientServlet extends HttpServlet {
 		System.out.println("motif "+motif);
 		System.out.println("montant "+montant);
 		
+		reservation = reservationDaoImpl.findReservation(Date.valueOf(dateReserve), salleId, Time.valueOf(startTime));
 		
-		reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
-		reservation = reservationDaoImpl.save(reservation);
-		request.setAttribute("reserve", reservation);
-		request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);
+		if (reservation != null) {
+			System.out.println("Can't reserve on this date");
+			request.getRequestDispatcher("salle-list").forward(request, response);
+		} else {
+			reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
+			reservation = reservationDaoImpl.save(reservation);
+			request.setAttribute("reservation", reservation);
+			request.setAttribute("client", client);
+			request.setAttribute("salle", salleReunion);
+			request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);
+		}		
+		
 	}
 	
 	private void listReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
