@@ -168,7 +168,8 @@ public class ClientServlet extends HttpServlet {
 			break;
 		
 		case "/delete-salle":
-			
+			deleteSalle(request, response);
+			request.getRequestDispatcher("salle-list").forward(request, response);	
 			break;
 		
 		case "/salle-reservation":
@@ -177,6 +178,19 @@ public class ClientServlet extends HttpServlet {
 		
 		case "/save-reservation":
 			saveReservation(request, response);
+			break;
+			
+		case "/modify-reservation":
+			modifyReservation(request, response);
+			break;
+			
+		case "/update-reservation":
+			updateReservation(request, response);
+			break;
+		
+		case "/delete-reservation":
+			//deleteReservation(request, response);
+			request.getRequestDispatcher("dashboard").forward(request, response);	
 			break;
 			
 		case "/home-page":
@@ -567,6 +581,12 @@ public class ClientServlet extends HttpServlet {
 		
 	}
 	
+	private void deleteSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleid");
+		
+		salleReunion.setSalleId(salleId);
+		salleReunionDaoImple.delete(salleReunion);
+	}
 	/******************************** RESERVATION **********************************/
 	
 	private void salleReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -625,6 +645,78 @@ public class ClientServlet extends HttpServlet {
 		} else {
 			reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
 			reservation = reservationDaoImpl.save(reservation);
+			request.setAttribute("reservation", reservation);
+			request.setAttribute("client", client);
+			request.setAttribute("salle", salleReunion);
+			request.getRequestDispatcher("reservation-confirmation.jsp").forward(request, response);
+		}		
+		
+	}
+	
+	private void modifyReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int reserveId = Integer.parseInt(request.getParameter("idreserve"));
+		reservation = reservationDaoImpl.find(reserveId);
+		Client clientReserve;
+		salleReunion = reservation.getSalle();
+		clientReserve = reservation.getClient();  
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+										
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+		//to get status of the particular user who logged in		
+		statut = clientDaoImple.find(username);	
+		} else {
+		statut = userDaoImple.find(username);
+		}	
+		
+		request.setAttribute("statut", statut);		
+		request.setAttribute("reservation", reservation);
+		request.setAttribute("salle", salleReunion);
+		request.setAttribute("client", clientReserve);	
+		request.getRequestDispatcher("modify-reservation.jsp").forward(request, response);
+	}
+	
+	private void updateReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String salleId = request.getParameter("salleid");
+		String username = request.getParameter("username");
+		System.out.println("Username "+username);
+		
+		
+		int clientId = clientDaoImple.findClientId(username);
+		
+		client = clientDaoImple.find(clientId);
+		salleReunion = salleReunionDaoImple.find(salleId);
+		
+		String dateReserve = request.getParameter("reserveDate");
+		String startTime = request.getParameter("startTime");
+		String endTime = request.getParameter("endTime");
+		String motif = request.getParameter("motif");
+		double montant = Double.parseDouble(request.getParameter("montant"));
+		System.out.println("salleId "+salleId);
+		System.out.println("clientId "+clientId);
+		System.out.println("dateReserve "+dateReserve);
+		System.out.println("startTime "+startTime);
+		System.out.println("endTime "+endTime);
+		System.out.println("motif "+motif);
+		System.out.println("montant "+montant);		
+		reservation = reservationDaoImpl.findReservation(Date.valueOf(dateReserve), salleId, Time.valueOf(startTime));
+		
+		if (reservation != null) {
+			System.out.println("Can't reserve on this date");
+			String msg = "Impossible de réserver à cette date. C'est Complet !";
+			request.setAttribute("message", msg);
+			request.getRequestDispatcher("warning-page.jsp").forward(request, response);
+			
+		} else {
+			reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
+			reservation = reservationDaoImpl.update(reservation);
 			request.setAttribute("reservation", reservation);
 			request.setAttribute("client", client);
 			request.setAttribute("salle", salleReunion);
@@ -827,17 +919,17 @@ public class ClientServlet extends HttpServlet {
 		client = clientDaoImple.findClient(username);
 		if (client != null ) {
 			int clientId = client.getClientId();
-			reservations = reservationDaoImpl.getAll(clientId);
-			request.setAttribute("reservations", reservations);
+			reservations = reservationDaoImpl.getAll(clientId);			
 			//to get status of the particular user who logged in		
 			statut = clientDaoImple.find(username);	
 			System.out.println("Statut Client "+statut);
 		} else {
+			reservations = reservationDaoImpl.getAll();
 			statut = userDaoImple.find(username);
 			System.out.println("Statut User "+statut);
 		}					
 		request.setAttribute("statut", statut);
-		
+		request.setAttribute("reservations", reservations);
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);
 	}
 	private void contact(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -6,10 +6,11 @@
 		            <table class="table table-condensed table-bordered">
 		                <thead>
 		                    <tr>
-		                        <th>Date de Reservation</th>
-		                        <th>Heure Debut</th>
-		                        <th>Heure Fin</th>
-		                        <th>Evenements</th>
+		                        <th scope="col" class="th-lg">Date de Reservation</th>
+		                        <th scope="col" class="th-lg">Heure Debut</th>
+		                        <th scope="col" class="th-lg">Heure Fin</th>
+		                        <th scope="col" class="th-lg">Evenements</th>
+		                        <th scope="col" class="th-lg"></th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -31,9 +32,18 @@
 		                                ${reservation.getMotif()}
 		                            </div>
 		                        </td>
+		                        <td>
+						            <div class="d-flex justify-content-around">
+								      <a href="modify-reservation?idreserve=${reservation.getReserveId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+								        <i class="fas fa-pencil-alt mt-0"></i>
+								      </a>
+								      <a href="delete-reservation?idreserve=${reservation.getReserveId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+								        <i class="far fa-trash-alt mt-0"></i>
+								      </a>								      
+						    		</div>
+					    		</td>
 		                    </tr>
-		                  	</c:forEach>  
-		                    
+		                  	</c:forEach>  		                    
 		                </tbody>
 		            </table>
 		        </div>

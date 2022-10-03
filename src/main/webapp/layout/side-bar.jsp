@@ -1,3 +1,4 @@
+<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white mt-3">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4">
@@ -6,41 +7,46 @@
           <span>Main dashboard</span>
         </a>
         
-        <a href="table" class="list-group-item list-group-item-action py-2 ripple" data-mdb-toggle="dropdown" aria-expanded="false">
+        <a class="list-group-item list-group-item-action py-2 ripple" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
           <i class="fas fa-chart-area fa-fw me-3"></i>
           <span>Salle de Reunion</span>
         </a>
         	<span class="visually-hidden">Toggle Dropdown</span>		  
 			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="add-salle">Ajoute une Salle</a></li>
+				<c:if test="${statut!=-1}">
+	            	<li><a class="dropdown-item" href="add-salle">Ajoute une Salle</a></li>
+	            </c:if>	
 	            <!-- <li><a class="dropdown-item" href="#">Modifier le Profil</a></li> -->
 	            <li><a class="dropdown-item" href="salle-list">Listes des Salles</a></li>
           	</ul>        
-        
-	    <a class="list-group-item list-group-item-action py-2 ripple dropdown-toggle" href="#" data-mdb-toggle="dropdown" aria-expanded="false">
-	         <i class="fas fa-building fa-fw me-3"></i><span>Clients</span>
-	           
-	    </a> 
-		    <span class="visually-hidden">Toggle Dropdown</span>		  
-			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="add-client">Ajoute un nouveau Client</a></li>
-	            <li><a class="dropdown-item" href="client-list">Listes des Clients</a></li>
-          	</ul>
+        <c:if test="${statut!=-1}">
+		    <a class="list-group-item list-group-item-action py-2 ripple dropdown-toggle" role="button" data-mdb-toggle="dropdown" aria-expanded="false">
+		         <i class="fas fa-building fa-fw me-3"></i><span>Clients</span>
+		           
+		    </a> 
+			    <span class="visually-hidden">Toggle Dropdown</span>		  
+				<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+		            <li><a class="dropdown-item" href="add-client">Ajoute un nouveau Client</a></li>
+		            <li><a class="dropdown-item" href="client-list">Listes des Clients</a></li>
+	          	</ul>
 		
-        <a href="agenda-reservation" class="list-group-item list-group-item-action py-2 ripple">
-        	<i class="fas fa-calendar fa-fw me-3"></i>
-           <span>Reservation de la salle</span>
-        </a>
-        <a href="#" data-mdb-toggle="dropdown" aria-expanded="false" class="list-group-item list-group-item-action py-2 ripple dropdown-toggle">
-            <i class="fas fa-users fa-fw me-3"></i>
-	        <span>Utilisateurs</span>
-	    </a>	     		  
-			<span class="visually-hidden">Toggle Dropdown</span>		  
-			<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-	            <li><a class="dropdown-item" href="add-employee">Ajoute un compte Employee</a></li>
-	            <!-- <li><a class="dropdown-item" href="#">Modifier le Profil</a></li> -->
-	            <li><a class="dropdown-item" href="employee-list">Listes des Personnels</a></li>
-          	</ul>
+	        <a href="agenda-reservation" class="list-group-item list-group-item-action py-2 ripple">
+	        	<i class="fas fa-calendar fa-fw me-3"></i>
+	           <span>Reservation de la salle</span>
+	        </a>
+	        <c:if test="${statut==1}">
+		        <a role="button" data-mdb-toggle="dropdown" aria-expanded="false" class="list-group-item list-group-item-action py-2 ripple dropdown-toggle">
+		            <i class="fas fa-users fa-fw me-3"></i>
+			        <span>Utilisateurs</span>
+			    </a>	     		  
+					<span class="visually-hidden">Toggle Dropdown</span>		  
+					<ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+			            <li><a class="dropdown-item" href="add-employee">Ajoute un compte Employee</a></li>
+			            <!-- <li><a class="dropdown-item" href="#">Modifier le Profil</a></li> -->
+			            <li><a class="dropdown-item" href="employee-list">Listes des Personnels</a></li>
+		          	</ul>
+		    </c:if>      	
+	    </c:if>      	
         <a href="contact" class="list-group-item list-group-item-action py-2 ripple">
 	        <i class="fas fa-envelope"></i>
 	        <span>Contact</span>
