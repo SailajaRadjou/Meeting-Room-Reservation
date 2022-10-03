@@ -371,6 +371,23 @@ public class ClientServlet extends HttpServlet {
 	
 	/********************** SALLE DE REUNOIN ***************************************************/
 	private void saveSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+												
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+		} else {
+			statut = userDaoImple.find(username);
+		}					
+		request.setAttribute("statut", statut);
+		
 		String salleId = request.getParameter("salleId");
 		String salleNom = request.getParameter("salleNom");
 		String localisation = request.getParameter("localisation");
@@ -411,6 +428,22 @@ public class ClientServlet extends HttpServlet {
 	}
 	
 	private void listSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+								
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+		} else {
+			statut = userDaoImple.find(username);
+		}					
+		request.setAttribute("statut", statut);
+		
 		salleReunions = salleReunionDaoImple.getAll();
 		if (salleReunions.isEmpty()) {
 			String msg = "Aucun enregistrement trouvé !";
@@ -428,11 +461,45 @@ public class ClientServlet extends HttpServlet {
 		String salleId = request.getParameter("salleid");
 		salleReunion = salleReunionDaoImple.find(salleId);
 		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+										
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+		//to get status of the particular user who logged in		
+		statut = clientDaoImple.find(username);	
+		} else {
+		statut = userDaoImple.find(username);
+		}	
+		
+		request.setAttribute("statut", statut);		
 		request.setAttribute("salle", salleReunion);
 		request.getRequestDispatcher("modify-salle.jsp").forward(request, response);
 	}
 	
 	private void updateSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+										
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+		} else {
+			statut = userDaoImple.find(username);
+		}					
+		request.setAttribute("statut", statut);
+		
 		String salleId = request.getParameter("salleId");
 		String salleNom = request.getParameter("salleNom");
 		String localisation = request.getParameter("localisation");
@@ -501,6 +568,22 @@ public class ClientServlet extends HttpServlet {
 		String salleId = request.getParameter("salleid");
 		salleReunion = salleReunionDaoImple.find(salleId);
 		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+												
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+		} else {
+			statut = userDaoImple.find(username);
+		}					
+		request.setAttribute("statut", statut);
+		
 		request.setAttribute("salle", salleReunion);
 		request.getRequestDispatcher("salle-reservation.jsp").forward(request, response);
 	}
@@ -530,7 +613,10 @@ public class ClientServlet extends HttpServlet {
 		
 		if (reservation != null) {
 			System.out.println("Can't reserve on this date");
-			request.getRequestDispatcher("salle-list").forward(request, response);
+			String msg = "Impossible de réserver à cette date. C'est Complet !";
+			request.setAttribute("message", msg);
+			request.getRequestDispatcher("warning-page.jsp").forward(request, response);
+			
 		} else {
 			reservation = new Reservation(Date.valueOf(dateReserve), Time.valueOf(startTime), Time.valueOf(endTime), motif, montant, client, salleReunion);
 			reservation = reservationDaoImpl.save(reservation);
@@ -543,10 +629,28 @@ public class ClientServlet extends HttpServlet {
 	}
 	
 	private void listReservation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+												
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+		} else {
+			statut = userDaoImple.find(username);
+		}					
+		request.setAttribute("statut", statut);
+		
 		reservations = reservationDaoImpl.getAll();
 		request.setAttribute("reservations", reservations);
 		request.getRequestDispatcher("reservation-agenda.jsp").forward(request, response);
 	}
+	
 	/********************** EMPLOYEE(USER) **************************************************************/
 	
 	private void loginEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

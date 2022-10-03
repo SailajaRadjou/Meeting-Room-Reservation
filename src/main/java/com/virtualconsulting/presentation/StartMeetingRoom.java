@@ -29,19 +29,27 @@ public class StartMeetingRoom {
 			cl=cdi.update(cl);
 			System.out.println(cl);
 		}*/
-		/*User u1;
-		User u = new User("Ram", "Vishnu", "ram@ezmeet.com", "ram", "ram", "Mr.", 0);
+		User u1;
+		//User u = new User("Ram", "Vishnu", "ram@ezmeet.com", "ram", "ram", "Mr.", 0);
 		UserDaoImple udi = new UserDaoImple();
-		u1 = udi.save(u);
+		/*u1 = udi.save(u);
 		if(u1 != null) {
 			System.out.println(u1);
 		}*/
-		
-//		Client cl;
-//		ClientDaoImple cdi = new ClientDaoImple();
-//		
-//		System.out.println(cdi.find("smiley"));
-		
+		int statut;
+		Client cl;
+		ClientDaoImple cdi = new ClientDaoImple();
+		cl = cdi.findClient("sailaja");
+		System.out.println(cl);
+		if (cl != null ) {
+			//to get status of the particular user who logged in		
+			statut = cdi.find("sailaja");
+			System.out.println("statut client : "+statut);
+		} else {
+			statut = udi.find("sailaja");
+			System.out.println("statut user : "+statut);
+		}	
+		System.out.println(statut);
 //		SalleReunion sr;
 //		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
 //		
@@ -63,8 +71,8 @@ public class StartMeetingRoom {
 		
 		//reservation = reservationDaoImpl.find(3);
 		
-		reservation = reservationDaoImpl.findReservation(Date.valueOf("2022-06-20"), "SR101", Time.valueOf("08:00:00"));
-		System.out.println(reservation);
+//		reservation = reservationDaoImpl.findReservation(Date.valueOf("2022-06-20"), "SR101", Time.valueOf("08:00:00"));
+//		System.out.println(reservation);
 		/*cl = cdi.find(1);
 		sr = salleDao.find("SR102");
 		

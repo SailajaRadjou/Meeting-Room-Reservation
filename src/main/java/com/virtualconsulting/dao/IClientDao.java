@@ -20,4 +20,5 @@ public interface IClientDao {
 	int countClient();
 	int find(String username);
 	int findClientId(String username);
+	Client findClient(String username);
 }
