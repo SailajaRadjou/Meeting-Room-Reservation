@@ -55,7 +55,13 @@
 		
 		</div>
 		<!-- Heading -->
-		<%@ include file = "layout/dashboard-content.jsp" %>
+		<c:if test="${statut==1 || statut==0}">
+			<%@ include file = "layout/dashboard-content.jsp" %>
+		</c:if>	
+		
+		<c:if test="${statut==-1}">
+			<%@ include file = "layout/dashboard-content-user.jsp" %>
+		</c:if>		
   </div>  
 </main>
 <!--Main layout-->

@@ -180,6 +180,10 @@ public class ClientServlet extends HttpServlet {
 			break;
 			
 		case "/home-page":
+			//for removing old cookies
+			cookie = new Cookie("username", "");
+	        cookie.setMaxAge(0);
+	        response.addCookie(cookie);
 			request.getRequestDispatcher("home-page.jsp").forward(request, response);
 			break;	
 			
@@ -233,6 +237,7 @@ public class ClientServlet extends HttpServlet {
 	}
 	
 	private void loginClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		        
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println(username+" "+password);
@@ -805,10 +810,12 @@ public class ClientServlet extends HttpServlet {
 		int countClients = clientDaoImple.countClient();
 		int countUsers = userDaoImple.countUser();
 		int countSalles = salleReunionDaoImple.countSalle();
+		int countReservations = reservationDaoImpl.countReservation();
 		
 		request.setAttribute("no_of_clients", countClients);
 		request.setAttribute("no_of_personnels", countUsers);
 		request.setAttribute("no_of_salles", countSalles);
+		request.setAttribute("no_of_reservations", countReservations);
 		
 		//retrieving cookies 
 		Cookie cookies[] = request.getCookies();
@@ -817,9 +824,18 @@ public class ClientServlet extends HttpServlet {
 						
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
-		//to get status of the particular user who logged in
-		statut = clientDaoImple.find(username);	
-					
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			int clientId = client.getClientId();
+			reservations = reservationDaoImpl.getAll(clientId);
+			request.setAttribute("reservations", reservations);
+			//to get status of the particular user who logged in		
+			statut = clientDaoImple.find(username);	
+			System.out.println("Statut Client "+statut);
+		} else {
+			statut = userDaoImple.find(username);
+			System.out.println("Statut User "+statut);
+		}					
 		request.setAttribute("statut", statut);
 		
 		request.getRequestDispatcher("dashboard.jsp").forward(request, response);

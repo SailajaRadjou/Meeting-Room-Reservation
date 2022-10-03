@@ -51,7 +51,7 @@
 				<div class="form-group col-md-6">
 				<label for="username">Nom d'utilisateur*</label>
 					<div class="input-group">
-					  <input type="text" id="nomClient" class="form-control" name="username"/>					  
+					  <input type="text" id="nomClient" class="form-control" name="username" value = "${username}" />					  
 					</div>
 				</div>
 				<div class="form-group col-md-6">
