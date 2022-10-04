@@ -9,4 +9,7 @@
 	font-size: 1.5rem;
 	color: #012169;
 }
+.username_style{
+	font-size: 1.3rem;
+}
 </style>

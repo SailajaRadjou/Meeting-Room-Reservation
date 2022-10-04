@@ -7,9 +7,9 @@
       <section class="">
         <p class="d-flex justify-content-center align-items-center">
           <span class="me-3">Register for free</span>
-          <button type="button" class="btn btn-outline-light btn-rounded">
+          <a type="button" class="btn btn-outline-light btn-rounded" href="loginClient">
             Sign up!
-          </button>
+          </a>
         </p>
       </section>
       <!-- Section: CTA -->

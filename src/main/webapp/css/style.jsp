@@ -24,7 +24,10 @@ body {
     padding-left: 240px;
   }
 }
-
+.table_heading{
+	font-size: 1.2rem;
+	font-weight: 700 !important;
+}
 /* AGENDA */
 #calendar {
   max-width: 1100px;

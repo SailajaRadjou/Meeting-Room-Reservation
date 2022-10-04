@@ -37,16 +37,18 @@
 	</header>
 	<div class="container mt-5 pt-4">
 		<div id='calendar'></div>
-		<h2>Agenda</h2> 
+		<%@ include file = "layout/dashboard-content-user.jsp" %>
+		<%-- <h2 class='text-center'>Réservation d'informations</h2> 
 		    <div class="agenda">
 		        <div class="table-responsive">
-		            <table class="table table-condensed table-bordered">
-		                <thead>
+		            <table class="table table-condensed table-bordered table-striped table-hover">
+		                <thead class="thread-light">
 		                    <tr>
-		                        <th>Date de Reservation</th>
-		                        <th>Heure Debut</th>
-		                        <th>Heure Fin</th>
-		                        <th>Evenements</th>
+		                        <th scope="col" class="th-lg table_heading">Date de Reservation</th>
+		                        <th scope="col" class="th-lg table_heading">Heure Debut</th>
+		                        <th scope="col" class="th-lg table_heading">Heure Fin</th>
+		                        <th scope="col" class="th-lg table_heading">Evenements</th>
+		                        <th scope="col" class="th-lg"></th>
 		                    </tr>
 		                </thead>
 		                <tbody>
@@ -74,7 +76,7 @@
 		                </tbody>
 		            </table>
 		        </div>
-		    </div>
+		    </div> --%>
 		</div>	
 		
 <%@ include file = "scripts/agenda.jsp" %>	

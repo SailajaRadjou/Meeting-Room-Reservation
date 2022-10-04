@@ -1,15 +1,15 @@
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <div class="container mt-5 pt-4">		
-		<h2>Agenda</h2> 
+		<h2 class='text-center'>Réservation d'informations</h2> 
 		    <div class="agenda">
 		        <div class="table-responsive">
-		            <table class="table table-condensed table-bordered">
-		                <thead>
+		            <table class="table table-condensed table-bordered table-striped table-hover">
+		                <thead class="thread-light">
 		                    <tr>
-		                        <th scope="col" class="th-lg">Date de Reservation</th>
-		                        <th scope="col" class="th-lg">Heure Debut</th>
-		                        <th scope="col" class="th-lg">Heure Fin</th>
-		                        <th scope="col" class="th-lg">Evenements</th>
+		                        <th scope="col" class="th-lg table_heading">Date de Reservation</th>
+		                        <th scope="col" class="th-lg table_heading">Heure Debut</th>
+		                        <th scope="col" class="th-lg table_heading">Heure Fin</th>
+		                        <th scope="col" class="th-lg table_heading">Evenements</th>
 		                        <th scope="col" class="th-lg"></th>
 		                    </tr>
 		                </thead>

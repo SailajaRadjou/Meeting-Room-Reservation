@@ -108,8 +108,7 @@
         <!-- Avatar -->
         <li class="nav-item dropdown">
           <a
-             class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center"
-             href="#"
+             class="nav-link dropdown-toggle hidden-arrow d-flex align-items-center username_style"             
              id="navbarDropdownMenuLink"
              role="button"
              data-mdb-toggle="dropdown"
