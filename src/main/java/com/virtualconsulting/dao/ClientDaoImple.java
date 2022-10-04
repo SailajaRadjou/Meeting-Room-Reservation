@@ -285,42 +285,40 @@ public class ClientDaoImple implements IClientDao{
 		}
 		
 		//to get the client details by username
-				@Override
-				public Client findClient(String username) {
+		@Override
+		public Client findClient(String username) {
 					
-					try {
-						PreparedStatement pStmt = conn.prepareStatement("select * from client where nom_identifiant = ?");
+		try {
+				PreparedStatement pStmt = conn.prepareStatement("select * from client where nom_identifiant = ?");
 						
-						pStmt.setString(1, username);
+				pStmt.setString(1, username);					
 						
+				ResultSet rSet = pStmt.executeQuery();
+				System.out.println("executed");
 						
-						ResultSet rSet = pStmt.executeQuery();
-						System.out.println("executed");
-						
-						if(rSet.next()) {
-							client = new Client();
-							client.setClientId(rSet.getInt("client_id"));
-							client.setNom(rSet.getString("nom"));
-							client.setPrenom(rSet.getString("prenom"));
-							client.setNomEntreprise(rSet.getString("nom_entreprise"));
-							client.setMail(rSet.getString("mail"));
-							client.setPhone(rSet.getString("phone"));
-							client.setCivilite(rSet.getString("civilite"));
-							client.setUsername(rSet.getString("nom_identifiant"));
-							client.setPassword(rSet.getString("mot_de_passe"));
-							System.out.println("Authentification succeed");
-							System.out.println(client.getNom());				
-							return client;
-						}
-						
-						pStmt.close();
-						
-					} catch (Exception e) {
-						System.err.println(e);
-					}
-					
-					return null;
+				if(rSet.next()) {
+					client = new Client();
+					client.setClientId(rSet.getInt("client_id"));
+					client.setNom(rSet.getString("nom"));
+					client.setPrenom(rSet.getString("prenom"));
+					client.setNomEntreprise(rSet.getString("nom_entreprise"));
+					client.setMail(rSet.getString("mail"));
+					client.setPhone(rSet.getString("phone"));
+					client.setCivilite(rSet.getString("civilite"));
+					client.setUsername(rSet.getString("nom_identifiant"));
+					client.setPassword(rSet.getString("mot_de_passe"));
+					System.out.println("Authentification succeed");
+					System.out.println(client.getNom());				
+					return client;
 				}
+				pStmt.close();
+						
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+					
+			return null;
+		}
 		//to get the Client Id
 		@Override
 		public int findClientId(String username) {

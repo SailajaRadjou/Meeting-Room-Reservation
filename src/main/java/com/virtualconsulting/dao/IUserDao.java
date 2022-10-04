@@ -19,4 +19,5 @@ public interface IUserDao {
 	
 	User find(int id);
 	int countUser();
+	User findUser(String username);
 }

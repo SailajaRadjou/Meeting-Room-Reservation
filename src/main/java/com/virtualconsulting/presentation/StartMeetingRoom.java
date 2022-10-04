@@ -39,20 +39,20 @@ public class StartMeetingRoom {
 		int statut;
 		Client cl;
 		ClientDaoImple cdi = new ClientDaoImple();
-		cl = cdi.findClient("sailaja");
-		System.out.println(cl);
-		if (cl != null ) {
-			//to get status of the particular user who logged in		
-			statut = cdi.find("sailaja");
-			System.out.println("statut client : "+statut);
-		} else {
-			statut = udi.find("sailaja");
-			System.out.println("statut user : "+statut);
-		}	
-		System.out.println(statut);
-//		SalleReunion sr;
-//		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
-//		
+		cl = cdi.findClient("ragou");
+//		System.out.println(cl);
+//		if (cl != null ) {
+//			//to get status of the particular user who logged in		
+//			statut = cdi.find("sailaja");
+//			System.out.println("statut client : "+statut);
+//		} else {
+//			statut = udi.find("sailaja");
+//			System.out.println("statut user : "+statut);
+//		}	
+//		System.out.println(statut);
+		SalleReunion sr;
+		SalleReunionDaoImple salleDao = new SalleReunionDaoImple();
+		sr = salleDao.find("SR103");
 		Reservation reservation;
 		ReservationDaoImpl reservationDaoImpl = new ReservationDaoImpl();
 //		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
@@ -74,13 +74,13 @@ public class StartMeetingRoom {
 //		reservation = reservationDaoImpl.findReservation(Date.valueOf("2022-06-20"), "SR101", Time.valueOf("08:00:00"));
 //		System.out.println(reservation);
 		/*cl = cdi.find(1);
-		sr = salleDao.find("SR102");
+		sr = salleDao.find("SR102");*/
 		
 		int hour, mins;
 
 		double montant;
-		String time1 = "12:30:00";
-		String time2 = "14:30:00";
+		String time1 = "14:30:00";
+		String time2 = "18:30:00";
 		
         long diffs = Duration.between(LocalTime.parse(time1), LocalTime.parse(time2)).toMinutes();
         
@@ -96,10 +96,10 @@ public class StartMeetingRoom {
         System.out.println(hour);
         
         		
-		reservation = new Reservation(Date.valueOf("2022-10-20"), Time.valueOf(time1), Time.valueOf(time2), "Buisness Meeting", montant, cl, sr);
+		reservation = new Reservation(Date.valueOf("2022-10-28"), Time.valueOf(time1), Time.valueOf(time2), "Training session", montant, cl, sr);
 		reservation = reservationDaoImpl.update(reservation);
-		
-		if (reservation != null) {
+		System.out.println(reservation);
+		/*if (reservation != null) {
 			reservation.setHeureFin(Time.valueOf("14:30:00"));
 			reservation.setMontant(montant);
 			reservation = reservationDaoImpl.update(reservation);

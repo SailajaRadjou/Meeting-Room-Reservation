@@ -191,6 +191,37 @@ public class UserDaoImple implements IUserDao {
 		}	
 		return null;
 	}
+	
+	//For authentification
+		@Override
+		public User findUser(String username) {
+			try {
+				PreparedStatement pStmt = conn.prepareStatement("select * from user where nom_identifiant = ?");
+				
+				pStmt.setString(1, username);				
+				
+				ResultSet rSet = pStmt.executeQuery();
+				if(rSet.next()) {
+					user = new User(); 
+					user.setId(rSet.getInt("user_id"));
+					user.setNom(rSet.getString("nom"));
+					user.setPrenom(rSet.getString("prenom"));
+					user.setMail(rSet.getString("mail"));
+					user.setUsername(rSet.getString("nom_identifiant"));
+					user.setPassword(rSet.getString("mot_de_passe"));
+					user.setCivilite(rSet.getString("civilite"));
+					user.setStatut(rSet.getInt("statut"));			
+					
+					System.out.println(user);
+					return user;
+				}
+				pStmt.close();
+			} catch (Exception e) {
+				System.err.println(e);
+			}	
+			return null;
+		}
+	
 //to get the statut of the user
 	@Override
 	public int find(String username) {

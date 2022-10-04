@@ -121,8 +121,8 @@
               class="dropdown-menu dropdown-menu-end"
               aria-labelledby="navbarDropdownMenuLink"
               >
-            <li><a class="dropdown-item" href="#">My profile</a></li>
-            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="affiche-profile?username=${username}">My profile</a></li>
+            <!-- <li><a class="dropdown-item" href="#">Settings</a></li> -->
             <li><a class="dropdown-item" href="home-page">Logout</a></li>
           </ul>
         </li>

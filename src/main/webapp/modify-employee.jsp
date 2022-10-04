@@ -84,6 +84,7 @@
 					</select>
 				  </div>
 		  	</div>
+		  	<c:if test="${statut==1}">
 		  	<div class="col">
 		  	   <div class="form-outline mb-4">
 			  		<select	id="form8Example7" class="form-select" name="statut">
@@ -92,7 +93,8 @@
 						<option value="1">1</option>
 					</select>
 			   </div>	
-		    </div>	
+		    </div>
+		    </c:if>	
 		  </div>
 		  
 		

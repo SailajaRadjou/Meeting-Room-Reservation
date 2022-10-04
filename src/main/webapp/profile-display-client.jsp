@@ -20,7 +20,7 @@
 />
 <%@ include file = "css/style.jsp"%>
 <%@ include file = "css/home-style.jsp"%>
-<title>Modify Employee Details</title>
+<title>Profile Affichage</title>
 </head>
 <body>
 <header>
@@ -29,72 +29,69 @@
 </header>
 <div class="container-lg mt-5 pt-5">
 
-	<form method = "post" action = "update-employee" style="margin-top: 15px;">
+	<form method = "post" action = "update-client" style="margin-top: 15px;">
 		  <!-- 2 column grid layout with text inputs for the first and last names -->
 		  <div class="row mb-4">
 		    <div class="col">
 		      <div class="form-outline">
-		        <input type="text" id="form6Example1" class="form-control" name="nom" value = ${user.getNom()} />
+		        <input type="text" id="form6Example1" class="form-control" name="nom" value = ${client.getNom()} />
 		        <label class="form-label" for="form6Example1">Nom</label>
 		      </div>
 		    </div>
 		    <div class="col">
 		      <div class="form-outline">
-		        <input type="text" id="form6Example2" class="form-control" name="prenom" value = ${user.getPrenom()} />
+		        <input type="text" id="form6Example2" class="form-control" name="prenom" value = ${client.getPrenom()} />
 		        <label class="form-label" for="form6Example2">Prenom</label>
 		      </div>
 		    </div>
 		    <!-- Text input -->
 		    <div class="col">
 			  <div class="form-outline mb-4">
-			    <input type="text" id="form6Example9" class="form-control" name="empid" readonly value = ${user.getId()} />
-			    <label class="form-label" for="form6Example9">Employee Id</label>
+			    <input type="text" id="form6Example9" class="form-control" name="clientId" readonly value = ${client.getClientId()} />
+			    <label class="form-label" for="form6Example9">Client Id</label>
 			  </div>
 			</div>  
 		  </div>
-				  
-		  <!-- Email input -->
-		  <div class="form-outline mb-4">
-		    <input type="email" id="form6Example4" class="form-control" name="mail" value = ${user.getMail()} />
-		    <label class="form-label" for="form6Example4">Email</label>
-		  </div>
-							
+		
 		  <!-- Text input -->
 		  <div class="form-outline mb-4">
-		    <input type="text" id="form6Example6" class="form-control" name="nom_identifiant" value = ${user.getUsername()} />
+		    <input type="text" id="form6Example3" class="form-control" name="nom_entreprise" value = ${client.getNomEntreprise()} />
+		    <label class="form-label" for="form6Example3">Nom de l'entreprise</label>
+		  </div>
+		
+		  <!-- Email input -->
+		  <div class="form-outline mb-4">
+		    <input type="email" id="form6Example4" class="form-control" name="mail" value = ${client.getMail()} />
+		    <label class="form-label" for="form6Example4">Email</label>
+		  </div>
+		
+			<!-- Text input -->
+		  <div class="form-outline mb-4">
+		    <input type="text" id="form6Example5" class="form-control" name="phone" value = ${client.getPhone()} />
+		    <label class="form-label" for="form6Example5">Téléphone</label>
+		  </div>
+		
+		  <!-- Text input -->
+		  <div class="form-outline mb-4">
+		    <input type="text" id="form6Example6" class="form-control" name="nom_identifiant" value = ${client.getUsername()} />
 		    <label class="form-label" for="form6Example6">Username </label>
 		  </div>
 		  
 		  <!-- Text input -->
 		  <div class="form-outline mb-4">
-		    <input type="password" id="form6Example7" class="form-control" name="mot_de_passe" value = ${user.getPassword()}/>
+		    <input type="password" id="form6Example7" class="form-control" name="mot_de_passe" value = ${client.getPassword()}/>
 		    <label class="form-label" for="form6Example7">Password</label>
 		  </div>
 		
 		  <!-- Text input -->
-		  <div class="row mb-4">
-		  	<div class="col">
-				  <div class="form-outline mb-4">
-				    <select class="form-select" name="civilite" id="form8Example6">
-						      <option>Civilité</option>
-						      <option value=${user.getCivilite()} selected>${user.getCivilite()}</option>
-						      <option value="Mlle.">Mlle.</option>
-						      <option value="Mme.">Mme.</option>
-						      <option value="Mr.">Mr.</option>
-					</select>
-				  </div>
-		  	</div>
-		  	<c:if test="${statut==1}">
-		  	<div class="col">
-		  	   <div class="form-outline mb-4">
-			  		<select	id="form8Example7" class="form-select" name="statut">
-			  			<option value=${user.getStatut()} selected>${user.getStatut()}</option>
-						<option value="0" selected>0</option>					
-						<option value="1">1</option>
-					</select>
-			   </div>	
-		    </div>
-		    </c:if>	
+		  <div class="form-outline mb-4">
+		    <select class="form-select" name="civilite" id="form8Example6">
+				      <option selected>Civilité</option>
+				      <option value=${client.getCivilite()} selected>${client.getCivilite()}</option>
+				      <option value="Mlle.">Mlle.</option>
+				      <option value="Mme.">Mme.</option>
+				      <option value="Mr.">Mr.</option>
+			</select>
 		  </div>
 		  
 		

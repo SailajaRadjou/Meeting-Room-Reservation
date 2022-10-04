@@ -45,13 +45,13 @@
 	</header>
 	<div class="container mt-5 pt-4">
 		<h3 class="mt-5 text-center mb-5">Reservation la Salle de Reunion</h3>
-		<form method="post" action="update-reservation?salleid=${salle.getSalleId()}" style="margin-top: 25px;"> 
+		<form method="post" action="update-reservation?salleid=${salle.getSalleId()}&reserveid=${reservation.getReserveId()}" style="margin-top: 25px;"> 
 			<h4 class="mt-5 text-center mb-5">${salle.getSalleNom()}</h4>
 			<div class="row mb-4">
 				<div class="form-group col-md-6">
 				<label for="username">Nom d'utilisateur*</label>
 					<div class="input-group">
-					  <input type="text" id="nomClient" class="form-control" name="username" value = ${client.getNom()} />					  
+					  <input type="text" id="nomClient" class="form-control" name="username" value = ${client.getUsername()} />					  
 					</div>
 				</div>
 				<div class="form-group col-md-6">
@@ -79,7 +79,7 @@
 	      		<div class="form-group col-md-8">
 			      <label for="date">Date de reservation</label>
 				     <div class="input-group date" id="datepicker">
-				        <input type="text" class="form-control" id="date" name="reserveDate" />
+				        <input type="text" class="form-control" id="date" name="reserveDate" value = "${reservation.getDateReserve()}" />
 				        <span class="input-group-append">
 				          <span class="input-group-text bg-light d-block">
 				            <i class="fa fa-calendar"></i>
