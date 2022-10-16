@@ -1,5 +1,5 @@
 <%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
-<div class="container mt-5 pt-4">		
+<div class="container container-sm container-md mt-5 pt-4">		
 		<h2 class='text-center'>Réservation d'informations</h2> 
 		    <div class="agenda">
 		        <div class="table-responsive">

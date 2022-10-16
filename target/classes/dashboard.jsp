@@ -3,6 +3,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+<META HTTP-EQUIV="Expires" CONTENT="-1">
 <!-- Font Awesome -->
 <link
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -20,6 +22,7 @@
 />
 <%@ include file = "css/style.jsp"%>
 <%@ include file = "css/home-style.jsp"%>
+<%@ include file = "scripts/load.jsp"%>
 <title>Meeting Room Reservation</title>
 </head>
 <body>
@@ -67,6 +70,7 @@
 <!--Main layout-->
     <!--Container Main end-->
     <!-- MDB -->
+    
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/5.0.0/mdb.min.js"

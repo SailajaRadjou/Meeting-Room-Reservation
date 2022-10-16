@@ -28,6 +28,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container-md pt-4 mt-5">
+<h2 class="white-text m-5 text-center">Formulaire de renseignements sur le client</h2>
 <form method = "post" action = "save-client" style="margin-top: 15px;">
   <!-- 2 column grid layout with text inputs for the first and last names -->
   <div class="row mb-4">

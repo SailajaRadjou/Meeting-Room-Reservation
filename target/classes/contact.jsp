@@ -19,6 +19,7 @@
   rel="stylesheet"
 />
 <%@ include file = "css/style.jsp"%>
+<%@ include file = "css/home-style.jsp"%>
 <title>Meeting Room Reservation</title>
 </head>
 <body>

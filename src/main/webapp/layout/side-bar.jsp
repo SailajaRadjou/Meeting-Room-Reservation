@@ -60,7 +60,7 @@
   <!-- Navbar -->
   <nav
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-light bg-white fixed-top mb-5"
+       class="navbar navbar-expand-lg navbar-light bg-white fixed-top mb-5 navbar_bg_display"
        >
     <!-- Container wrapper -->
     <div class="container-fluid">
@@ -79,7 +79,7 @@
 
       <!-- Brand -->
       <a class="navbar-brand" href="#">
-        <img
+        <img class="image_logo"
              src="https://cdn3.vectorstock.com/i/thumb-large/18/12/teamwork-people-united-logo-vector-911812.jpg"
              height="45"
              alt="Logo EZ-Meet"

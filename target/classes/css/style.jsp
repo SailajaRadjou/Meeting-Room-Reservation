@@ -16,9 +16,33 @@ html, body{
 img{
   object-fit: cover;
 }
+.image_logo{
+	border-radius: 25px !important;
+}
 body {
   background-color: #fbfbfb;
 }
+.navbar_bg_display{
+	background: radial-gradient(circle, rgba(0,112,187,1) 0%, rgba(192,229,242,1) 76%);
+}
+.btn-primary, .btn-info{
+    background-color: rgb(0,112,187) !important;
+    font-size: 1rem !important;
+}  
+
+/* Responsive pour Mobile*/
+@media screen and (min-width : 767px) and (max-width : 1025px)
+{
+	 .container, .container-md, .container-sm {
+	    max-width: 100% !important;
+	}  
+	 .container_display {
+    	flex-wrap: nowrap !important;
+	} 
+	.col-sm-4 {
+        width: 50% !important;
+	}
+} 
 @media (min-width: 991.98px) {
   main {
     padding-left: 240px;
@@ -56,7 +80,7 @@ body {
 }
 
 .fc-event-start{
-	background-color: #5833FF !important;
+	background-color: #CD5700 !important;
 	
 }
 

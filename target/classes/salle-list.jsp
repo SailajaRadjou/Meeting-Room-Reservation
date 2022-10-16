@@ -50,17 +50,17 @@
 	<%
 		String imgFileName=(String)request.getAttribute("image");
 	%>
-	<div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+	<div class="row row-cols-1 row-cols-md-3 g-4 mt-5 mb-5">
 	<c:forEach var = 'salle' items="${salles}">
   		<div class="col-md-4 col-12">
 			<div class="card h-100" style="border-top: 5px solid #33b5e5;">
-				<div class="col-md-12 col-4">
+				<div class="col-md-12">
 				  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
 				    <img src="http://localhost:8080/MeetingRoomReservation/images/${salle.getSalleImage()}" class='img-fluid rounded-start' style="height: 280px; width: 100%;"/>
 				    
 				  </div>
 				 </div> 
-				 <div class="col-md-12 col-8">
+				 <div class="col-md-12">
 					  <div class="card-body">
 						<div class="d-flex justify-content-between">					  
 						    <h5 class="card-title">${salle.getSalleNom()}</h5>

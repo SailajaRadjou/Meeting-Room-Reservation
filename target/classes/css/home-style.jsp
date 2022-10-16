@@ -11,5 +11,6 @@
 }
 .username_style{
 	font-size: 1.3rem;
+	color: #012169 !important;
 }
 </style>
