@@ -63,6 +63,10 @@
             </button>
             
           </form>
+          <c:if test="${message!=null}">
+			<hr>
+		  	<p class="mb-0" style="font-size: 1.3rem; color: red; font-weight: 600;">${message}</p>
+		  </c:if>
         </div>
       </div>
     </div>

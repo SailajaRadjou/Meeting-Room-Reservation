@@ -28,7 +28,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container-lg mt-5 pt-5">
-
+	<h3 class="mt-5 text-center mb-5">Formulaire Employée de modification</h3>
 	<form method = "post" action = "update-employee" style="margin-top: 15px;">
 		  <!-- 2 column grid layout with text inputs for the first and last names -->
 		  <div class="row mb-4">

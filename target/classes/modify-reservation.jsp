@@ -44,7 +44,7 @@
 	  <%@ include file = "layout/side-bar.jsp" %>
 	</header>
 	<div class="container mt-5 pt-4">
-		<h3 class="mt-5 text-center mb-5">Reservation la Salle de Reunion</h3>
+		<h3 class="mt-5 text-center mb-5">Reservation la Salle de Reunion - Modification Formulaire</h3>
 		<form method="post" action="update-reservation?salleid=${salle.getSalleId()}&reserveid=${reservation.getReserveId()}" style="margin-top: 25px;"> 
 			<h4 class="mt-5 text-center mb-5">${salle.getSalleNom()}</h4>
 			<div class="row mb-4">

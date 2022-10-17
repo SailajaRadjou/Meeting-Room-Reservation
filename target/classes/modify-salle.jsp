@@ -31,7 +31,7 @@
   <%@ include file = "layout/side-bar.jsp" %>
 </header>
 <div class="container mt-5 pt-4">
-<h3 class="mt-5 text-center mb-5">Ajoute une nouvelle Salle de Réunion</h3>
+	<h3 class="mt-5 text-center mb-5">Formulaire Salle de Réunion de modification</h3>
 	<form method="post" action="update-salle" enctype="multipart/form-data" style="margin-top: 15px;">
 	  <!-- 2 column grid layout with text inputs for the first and last names -->
 	  <div class="row mb-4">

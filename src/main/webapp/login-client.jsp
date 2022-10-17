@@ -122,6 +122,10 @@
 				        <p>Not a member? <a href="#!">Register</a></p>
 				      </div>
 				    </form>
+				    <c:if test="${message!=null}">
+				    <hr>
+		  			<p class="mb-0" style="font-size: 1.3rem; color: red; font-weight: 600;">${message}</p>
+		  			</c:if>
 				  </div>
 				  <div class="tab-pane fade" id="pills-register" role="tabpanel" aria-labelledby="tab-register">
 				    <form method = "post" action = "save-client" style="margin-top: 15px;">

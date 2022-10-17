@@ -226,7 +226,17 @@ public class ClientServlet extends HttpServlet {
 			return username;
 			
 		}
-	
+	private int getStatut(String username) {
+		int status;
+		client = clientDaoImple.findClient(username);
+		if (client != null ) {
+			//to get status of the particular user who logged in		
+			status = clientDaoImple.find(username);	
+		} else {
+			status = userDaoImple.find(username);
+		}
+		return status;
+	}
 	/********************** CLIENT **************************************************************/
 	private void clientList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		clients = clientDaoImple.getAll();
@@ -244,13 +254,7 @@ public class ClientServlet extends HttpServlet {
 		getCookie(cookies);				
 		//to get status of the particular user who logged in
 		
-		client = clientDaoImple.findClient(username);
-		if (client != null ) {
-			//to get status of the particular user who logged in		
-			statut = clientDaoImple.find(username);	
-		} else {
-			statut = userDaoImple.find(username);
-		}						
+		statut = getStatut(username);						
 		request.setAttribute("statut", statut);
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
@@ -273,7 +277,7 @@ public class ClientServlet extends HttpServlet {
 		
 		//System.out.println(client.getNom());
 		if (client == null) {
-			String msg = "Enter correct username & password";
+			String msg = "Nom d'utilisateur / mot de passe invalide";
 			request.setAttribute("message", msg);
 			request.getRequestDispatcher("login-client.jsp").forward(request, response);
 		} else {
@@ -329,13 +333,7 @@ public class ClientServlet extends HttpServlet {
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
 		//to get status of the particular user who logged in
-		client = clientDaoImple.findClient(username);
-		if (client != null ) {
-			//to get status of the particular user who logged in		
-			statut = clientDaoImple.find(username);	
-		} else {
-			statut = userDaoImple.find(username);
-		}					
+		statut = getStatut(username);				
 					
 		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("client-confirme.jsp").forward(request, response);
@@ -345,7 +343,8 @@ public class ClientServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("idclient"));
 		client = clientDaoImple.find(id);
 		System.out.println(client.getClientId()+ " Client ID");
-		
+		System.out.println(client);
+		request.setAttribute("client", client);
 		//retrieving cookies 
 		Cookie cookies[] = request.getCookies();
 		//calling functions for getting particular cookies
@@ -354,16 +353,10 @@ public class ClientServlet extends HttpServlet {
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
 		//to get status of the particular user who logged in
-		client = clientDaoImple.findClient(username);
-		if (client != null ) {
-			//to get status of the particular user who logged in		
-			statut = clientDaoImple.find(username);	
-		} else {
-			statut = userDaoImple.find(username);
-		}				
+		statut = getStatut(username);				
 					
 		request.setAttribute("statut", statut);
-		request.setAttribute("client", client);
+		//request.setAttribute("client", client);
 		request.getRequestDispatcher("modify-client.jsp").forward(request, response);
 	}
 	
@@ -375,12 +368,12 @@ public class ClientServlet extends HttpServlet {
 		String mail = request.getParameter("mail");
 		String phone = request.getParameter("phone");		
 		String civilite = request.getParameter("civilite");
-		String username = request.getParameter("nom_identifiant");
+		String username1 = request.getParameter("nom_identifiant");
 		String password = request.getParameter("mot_de_passe");
 		
 		client = clientDaoImple.find(id);		
 		
-		client = new Client(nom, prenom, nomEntreprise, mail, phone, civilite, username, password);
+		client = new Client(nom, prenom, nomEntreprise, mail, phone, civilite, username1, password);
 		client.setClientId(id);
 		
 		client = clientDaoImple.update(client);
@@ -396,13 +389,7 @@ public class ClientServlet extends HttpServlet {
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
 		//to get status of the particular user who logged in
-		client = clientDaoImple.findClient(username);
-		if (client != null ) {
-			//to get status of the particular user who logged in		
-			statut = clientDaoImple.find(username);	
-		} else {
-			statut = userDaoImple.find(username);
-		}				
+		statut = getStatut(username);				
 					
 		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("client-confirme.jsp").forward(request, response);
@@ -927,12 +914,12 @@ public class ClientServlet extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("empid"));
 		String mail = request.getParameter("mail");				
 		String civilite = request.getParameter("civilite");
-		String username = request.getParameter("nom_identifiant");
+		String username1 = request.getParameter("nom_identifiant");
 		String password = request.getParameter("mot_de_passe");
 		int statut = Integer.parseInt(request.getParameter("statut"));
 		
 		user = userDaoImple.find(id);
-		user = new User(nom, prenom, mail, username, password, civilite, statut);
+		user = new User(nom, prenom, mail, username1, password, civilite, statut);
 		user.setId(id);
 		
 		user = userDaoImple.update(user);
