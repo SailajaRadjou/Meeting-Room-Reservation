@@ -36,7 +36,7 @@
 	
 				  <!--Card image-->
 				  <div
-				    class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+				    class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 				
 				    <!-- <div>
 				      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -46,10 +46,23 @@
 				        <i class="fas fa-columns mt-0"></i>
 				      </button>
 				    </div> -->
-				
+				  
+		
 				    <h2 class="white-text mx-3 text-center">Listes des Clients </h2>
 				
-				    
+				    <form method="post" action="search" class="d-none d-md-flex input-group w-auto my-auto">
+				        <input
+				               autocomplete="off"
+				               type="search"
+				               class="form-control rounded"
+				               placeholder='Recherche nom des clients...'
+				               name="nom"
+				               style="min-width: 245px"
+				        />
+				        <button type="submit" class="input-group-text border-0">
+				        	<i class="fas fa-search"></i>
+				        </button>
+		      		</form> 
 				
 				  </div>
 				  <!--/Card image-->

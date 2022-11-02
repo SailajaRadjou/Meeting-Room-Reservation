@@ -74,6 +74,10 @@ public class ClientServlet extends HttpServlet {
 			findClient(request, response);
 		break;
 		
+		case "/searchEmployee":
+			findEmployee(request, response);
+		break;
+		
 		case "/agenda-reservation":
 			listReservation(request, response);			
 			break;
@@ -148,6 +152,10 @@ public class ClientServlet extends HttpServlet {
 			request.getRequestDispatcher("client-list").forward(request, response);			
 			break;
 			
+		case "/client-detail":
+			clientDetail(request, response);						
+			break;
+			
 		case "/add-salle":
 			getCookie(cookies);
 			request.setAttribute("username", username);				
@@ -210,22 +218,21 @@ public class ClientServlet extends HttpServlet {
 		}
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		doGet(request, response);
 	}
 	
 	//method for getting particular value in the cookie
-		private String getCookie(Cookie[] cookies) {
-			for (Cookie c : cookies) {
-				if(c.getName().equals("username"))
-					username = c.getValue();
+	private String getCookie(Cookie[] cookies) {
+		for (Cookie c : cookies) {
+			if(c.getName().equals("username"))
+				username = c.getValue();
 				
-			}
-			return username;
-			
 		}
+		return username;
+			
+	}
 	private int getStatut(String username) {
 		int status;
 		client = clientDaoImple.findClient(username);
@@ -950,7 +957,7 @@ public class ClientServlet extends HttpServlet {
 		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("contact.jsp").forward(request, response);
 	}
-	
+	//Recherche le client par le nom
 	private void findClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//retrieving cookies 
 		Cookie cookies[] = request.getCookies();
@@ -977,6 +984,62 @@ public class ClientServlet extends HttpServlet {
 			
 			request.setAttribute("clients", clients);
 			request.getRequestDispatcher("list-client.jsp").forward(request, response);
+		}
+		
+	}
+	
+	//Plus d'infos sur un client
+	private void clientDetail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		int id = Integer.parseInt(request.getParameter("idclient"));
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+									
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+				
+		//to get status of the particular user who logged in
+		statut = getStatut(username);											
+		request.setAttribute("statut", statut);
+		
+		client = clientDaoImple.find(id);
+		if (client != null ) {
+			int clientId = client.getClientId();
+			reservations = reservationDaoImpl.getAll(clientId);	
+			request.setAttribute("client", client);
+			request.setAttribute("reservations", reservations);
+		}	
+		request.getRequestDispatcher("client-plus-infos.jsp").forward(request, response);
+	}
+	
+	//Recherche l'employee par le nom
+	private void findEmployee(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+								
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = getStatut(username);			
+		request.setAttribute("statut", statut);
+		
+		String nom = request.getParameter("nom");
+		System.out.println("nom : "+nom);
+		users = userDaoImple.getAll(nom);
+		
+		//checking whether data exist or not 
+		if(users.isEmpty()) {
+			String msg = "Ce nom ne figure pas! Saisissez correctement SVP!!!";
+			request.setAttribute("message", msg);
+			request.getRequestDispatcher("warning-page.jsp").forward(request, response);			
+		}		
+		else{
+			
+			request.setAttribute("users", users);
+			request.getRequestDispatcher("list-employee.jsp").forward(request, response);
 		}
 		
 	}

@@ -40,34 +40,27 @@
 		
 		    <!--Card content-->
 		    <div class="d-sm-flex justify-content-between">
-		
 		        <h4 class="mb-sm-0 pt-3">
 		            <a href="/" target="_blank">Home</a>
 		            <span>/</span>
 		            <span>Dashboard</span>
-		        </h4>
-		
-		      <!-- <form class="d-flex md-form justify-content-center my-0">
-		            Default input
-		            <input type="search" placeholder="Type your query" aria-label="Search" class="form-control">
-		            <a href="#" class="btn btn-primary"><i class="fas fa-search"></i></a>
-		
-		        </form>  -->
-		     <form method="post" action="search" class="d-none d-md-flex input-group w-auto my-auto">
-		        <input
-		               autocomplete="off"
-		               type="search"
-		               class="form-control rounded"
-		               placeholder='Recherche nom des clients...'
-		               name="nom"
-		               style="min-width: 245px"
-		        />
-		        <button type="submit" class="input-group-text border-0">
-		        	<i class="fas fa-search"></i>
-		        </button>
-      		</form>   
-		
-		    </div>
+		        </h4>		
+			    <c:if test="${statut==1 || statut==0}">
+				     <form method="post" action="search" class="d-none d-md-flex input-group w-auto my-auto">
+				        <input
+				               autocomplete="off"
+				               type="search"
+				               class="form-control rounded"
+				               placeholder='Recherche nom des clients...'
+				               name="nom"
+				               style="min-width: 245px"
+				        />
+				        <button type="submit" class="input-group-text border-0">
+				        	<i class="fas fa-search"></i>
+				        </button>
+		      		</form>   
+				</c:if>
+		   </div>
 		
 		</div>
 		<!-- Heading -->

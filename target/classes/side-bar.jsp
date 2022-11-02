@@ -87,8 +87,8 @@
              />
          <span class="ez_title_dash">EZ-MEET</span>    
       </a>
-      <!-- Search form -->
-      <form class="d-none d-md-flex input-group w-auto my-auto">
+       <!-- Search form -->
+      <!--<form class="d-none d-md-flex input-group w-auto my-auto">
         <input
                autocomplete="off"
                type="search"
@@ -99,7 +99,7 @@
         <span class="input-group-text border-0"
               ><i class="fas fa-search"></i
           ></span>
-      </form>
+      </form> -->
 
       <!-- Right links -->
       <ul class="navbar-nav ms-auto d-flex flex-row">

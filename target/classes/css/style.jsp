@@ -28,6 +28,9 @@ body {
 .btn-primary, .btn-info{
     background-color: rgb(0,112,187) !important;
     font-size: 1rem !important;
+}
+.table{
+	font-size: 1.1rem !important;
 }  
 
 /* Responsive pour Mobile*/

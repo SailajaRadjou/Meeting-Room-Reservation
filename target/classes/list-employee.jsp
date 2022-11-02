@@ -36,7 +36,7 @@
 	
 				  <!--Card image-->
 				  <div
-				    class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-center align-items-center">
+				    class="view view-cascade gradient-card-header blue-gradient narrower py-2 mx-4 mb-3 d-flex justify-content-between align-items-center">
 				
 				    <!-- <div>
 				      <button type="button" class="btn btn-outline-white btn-rounded btn-sm px-2">
@@ -48,7 +48,19 @@
 				    </div> -->
 				
 				    <h2 class="white-text mx-3 text-center">Listes des Personnals </h2>
-				
+					<form method="post" action="searchEmployee" class="d-none d-md-flex input-group w-auto my-auto">
+				        <input
+				               autocomplete="off"
+				               type="search"
+				               class="form-control rounded"
+				               placeholder='Recherche nom des employees...'
+				               name="nom"
+				               style="min-width: 285px"
+				        />
+				        <button type="submit" class="input-group-text border-0">
+				        	<i class="fas fa-search"></i>
+				        </button>
+		      		</form> 
 				    
 				
 				  </div>
@@ -100,16 +112,16 @@
 				            <td>${u.getCivilite()}</td>
 				            <td>${u.getStatut()}</td>
 				            <td>
-				            <div>
+				            <div class="d-flex justify-content-around">
 						      <a href="modify-employee?idemployee=${u.getId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
 						        <i class="fas fa-pencil-alt mt-0"></i>
 						      </a>
 						      <a href="delete-employee?idemployee=${u.getId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
 						        <i class="far fa-trash-alt mt-0"></i>
 						      </a>
-						      <a href="employee-detail?idemployee=${u.getId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+						      <%-- <a href="employee-detail?idemployee=${u.getId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
 						        <i class="fas fa-info-circle mt-0"></i>
-						      </a>
+						      </a> --%>
 				    		</div>
 				    		</td>
 				          </tr>
