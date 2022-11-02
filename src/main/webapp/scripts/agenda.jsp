@@ -4,12 +4,7 @@
 		  var reserveDates = document.querySelectorAll('.reserve-date');
 		  var evenements = document.querySelectorAll('.evenement');
 		  var startTimes = document.querySelectorAll('.reserve-time-start');
-		  var endTimes = document.querySelectorAll('.reserve-time-end');
-		  
-		  /*for (let x of times){
-			  console.log("Reserve Date : "+ x.textContent);
-		  }*/		  
-		 	
+		  var endTimes = document.querySelectorAll('.reserve-time-end');		 	
 		  var evts = []; // variable for events
 		//this is the part  where i tested to create a json format
 		for (var i in reserveDates) {			
@@ -18,13 +13,12 @@
 		        end: new Date([reserveDates[i].textContent, endTimes[i].textContent]),
 		        title: "\n"+evenements[i].innerText,
 		        allDay: false
-		    });
-		    
+		    });		    
 		}
 		var calendar = new FullCalendar.Calendar(calendarEl, {
 			
 		    initialView: 'dayGridMonth',		    
-		    initialDate: new Date('2022-03-01'),		     
+		    initialDate: new Date('2022-08-01'),		     
 		    themeSystem: "bootstrap",
 		    headerToolbar: {
 		      left: 'prev,next today',

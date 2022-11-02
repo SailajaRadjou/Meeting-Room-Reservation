@@ -11,6 +11,7 @@ public interface IUserDao {
 	int delete(User user);
 	
 	ArrayList<User> getAll();
+	ArrayList<User> getAll(String nom);
 	
 	User search(String nom, String prenom);
 	

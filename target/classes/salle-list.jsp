@@ -64,18 +64,19 @@
 					  <div class="card-body">
 						<div class="d-flex justify-content-between">					  
 						    <h5 class="card-title">${salle.getSalleNom()}</h5>
-						    
-						    <span>
-							      <a href="modify-salle?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
-							        <i class="fas fa-pencil-alt mt-0"></i>
-							      </a>
-							      <a href="delete-salle?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
-							        <i class="far fa-trash-alt mt-0"></i>
-							      </a>
-							      <a href="salle-detail?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
-							        <i class="fas fa-plus-circle"></i>
-							      </a>
-					    	</span>
+						    <c:if test="${statut!=-1}">
+							    <span>
+								      <a href="modify-salle?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+								        <i class="fas fa-pencil-alt mt-0"></i>
+								      </a>
+								      <a href="delete-salle?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+								        <i class="far fa-trash-alt mt-0"></i>
+								      </a>
+								      <%-- <a href="salle-detail?salleid=${salle.getSalleId()}" class="btn btn-outline-white btn-rounded btn-sm px-2">
+								        <i class="fas fa-plus-circle"></i>
+								      </a> --%>
+						    	</span>
+					    	</c:if>
 					   </div> 	
 					    <h6 class="card-title">${salle.getTarif()} <i class="fas fa-euro-sign"></i> /heure</h6>
 					    <p class="card-text">Explore flexible meeting rooms  situated in the heart of ${salle.getLocalisation()}.</p>

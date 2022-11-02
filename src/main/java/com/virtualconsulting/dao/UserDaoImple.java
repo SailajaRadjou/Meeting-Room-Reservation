@@ -192,7 +192,6 @@ public class UserDaoImple implements IUserDao {
 		return null;
 	}
 	
-	//For authentification
 		@Override
 		public User findUser(String username) {
 			try {
@@ -300,6 +299,37 @@ public class UserDaoImple implements IUserDao {
 		}
 		return 0;
 	
+	}
+
+	@Override
+	public ArrayList<User> getAll(String nom) {
+		ArrayList<User> users = new ArrayList<User>();
+	
+		try {
+			PreparedStatement pStmt = conn.prepareStatement("select * from user where nom like ?");
+			
+			pStmt.setString(1,'%'+nom+'%');				
+			
+			ResultSet rSet = pStmt.executeQuery();
+			while (rSet.next()) {
+				user = new User(); 
+				user.setId(rSet.getInt("user_id"));
+				user.setNom(rSet.getString("nom"));
+				user.setPrenom(rSet.getString("prenom"));
+				user.setMail(rSet.getString("mail"));
+				user.setUsername(rSet.getString("nom_identifiant"));
+				user.setPassword(rSet.getString("mot_de_passe"));
+				user.setCivilite(rSet.getString("civilite"));
+				user.setStatut(rSet.getInt("statut"));	
+				users.add(user);
+			}
+						
+		pStmt.close();
+		
+		} catch (Exception e) {
+			System.err.println(e);
+		}
+		return users;
 	}
 
 }

@@ -70,9 +70,9 @@ public class ClientServlet extends HttpServlet {
 			contact(request, response);
 			break;
 			
-		case "/table":
-			request.getRequestDispatcher("table.jsp").forward(request, response);
-			break;
+		case "/search":
+			findClient(request, response);
+		break;
 		
 		case "/agenda-reservation":
 			listReservation(request, response);			
@@ -246,35 +246,32 @@ public class ClientServlet extends HttpServlet {
 			}
 		} else {
 			System.out.println("cannot recupere");
-		}
-		
+		}		
 		//retrieving cookies 
 		Cookie cookies[] = request.getCookies();
 		//calling functions for getting particular cookies
-		getCookie(cookies);				
-		//to get status of the particular user who logged in
+		getCookie(cookies);	
 		
+		//to get status of the particular user who logged in		
 		statut = getStatut(username);						
 		request.setAttribute("statut", statut);
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
+		
 		System.out.println("username : "+username);
 		request.setAttribute("clients", clients);
 		request.getRequestDispatcher("list-client.jsp").forward(request, response);
 	}
 	
-	private void loginClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		        
+	private void loginClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		        
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		System.out.println(username+" "+password);
 		client = clientDaoImple.find(username, password);		
-		
 		//creating cookie object
 		cookie = new Cookie("username", username);
 		//adding cookie in the response  
-		response.addCookie(cookie);
-		
+		response.addCookie(cookie);		
 		//System.out.println(client.getNom());
 		if (client == null) {
 			String msg = "Nom d'utilisateur / mot de passe invalide";
@@ -284,15 +281,12 @@ public class ClientServlet extends HttpServlet {
 			//retrieving cookies 
 			Cookie cookies[] = request.getCookies();
 			//calling functions for getting particular cookies
-			getCookie(cookies);
-							
+			getCookie(cookies);							
 			//setting username received from getCookie()
 			request.setAttribute("username", username);
 			//to get status of the particular user who logged in
-			statut = clientDaoImple.find(username);	
-						
-			request.setAttribute("statut", statut);
-			
+			statut = clientDaoImple.find(username);							
+			request.setAttribute("statut", statut);			
 			request.getRequestDispatcher("dashboard").forward(request, response);
 		}
 		
@@ -404,43 +398,34 @@ public class ClientServlet extends HttpServlet {
 	
 	/********************** SALLE DE REUNOIN ***************************************************/
 	private void saveSalle(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
 		//retrieving cookies 
 		Cookie cookies[] = request.getCookies();
 		//calling functions for getting particular cookies
-		getCookie(cookies);
-												
+		getCookie(cookies);												
 		//setting username received from getCookie()
 		request.setAttribute("username", username);
 		statut = getStatut(username);		
-		request.setAttribute("statut", statut);
-		
+		request.setAttribute("statut", statut);		
 		String salleId = request.getParameter("salleId");
 		String salleNom = request.getParameter("salleNom");
 		String localisation = request.getParameter("localisation");
 		int capacite = Integer.parseInt(request.getParameter("capacite"));
-		double tarif = Double.parseDouble(request.getParameter("tarif"));
-		
-		
+		double tarif = Double.parseDouble(request.getParameter("tarif"));		
 		Part filePart = request.getPart("image");		
 		//get selected image file name
     	String imgName = filePart.getSubmittedFileName();
-    	System.out.println("Selected image file name is "+imgName);
-    	
+    	System.out.println("Selected image file name is "+imgName);    	
     	//upload path where we have to upload our selected image
     	String uploadPath = "C:/Users/Rettina/Documents/Concepteur Formation/Java-Progamming/MeetingRoomReservation/src/main/webapp/images/"+imgName;
-    	System.out.println("upload path : "+uploadPath);
-    	
+    	System.out.println("upload path : "+uploadPath);    	
     	//uploading our selected image into image folder
     	try {
     		FileOutputStream fos = new FileOutputStream(uploadPath);
-    		InputStream iStream = filePart.getInputStream();
-    		
+    		InputStream iStream = filePart.getInputStream();    		
     		byte[] data = new byte[iStream.available()];
     		iStream.read(data);
     		fos.write(data);
-    		fos.close();
-    		
+    		fos.close();    		
     		salleReunion = new SalleReunion(salleId, salleNom, localisation, capacite, tarif, imgName);
     		salleReunion = salleReunionDaoImple.save(salleReunion);
     		if (salleReunion != null) {
@@ -964,6 +949,36 @@ public class ClientServlet extends HttpServlet {
 					
 		request.setAttribute("statut", statut);
 		request.getRequestDispatcher("contact.jsp").forward(request, response);
+	}
+	
+	private void findClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//retrieving cookies 
+		Cookie cookies[] = request.getCookies();
+		//calling functions for getting particular cookies
+		getCookie(cookies);
+								
+		//setting username received from getCookie()
+		request.setAttribute("username", username);
+		//to get status of the particular user who logged in
+		statut = getStatut(username);			
+		request.setAttribute("statut", statut);
+		
+		String nom = request.getParameter("nom");
+		System.out.println("nom : "+nom);
+		clients = clientDaoImple.getAll(nom);
+		
+		//checking whether data exist or not 
+		if(clients.isEmpty()) {
+			String msg = "Ce nom ne figure pas! Saisissez correctement SVP!!!";
+			request.setAttribute("message", msg);
+			request.getRequestDispatcher("warning-page.jsp").forward(request, response);			
+		}		
+		else{
+			
+			request.setAttribute("clients", clients);
+			request.getRequestDispatcher("list-client.jsp").forward(request, response);
+		}
+		
 	}
 
 }

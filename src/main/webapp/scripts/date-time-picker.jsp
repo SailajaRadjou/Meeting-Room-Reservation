@@ -1,7 +1,6 @@
 <script type="text/javascript">
            
-             $(function(){
-            	 
+             $(function(){            	 
             	  $('#datepicker').datepicker({
             		  startDate: new Date()
             	  });
@@ -50,16 +49,16 @@
             	console.log("current date"+date);
             	console.log("new date"+dateForm);       	 
             	var tarif = $("#tarif").val();
-	             var from = $("#timeFrom").val();
-	             var to = $("#timeTo").val();
-	             difference =  ( new Date("1970-1-1 " + to) - new Date("1970-1-1 " + from) ) / 1000 / 60;
-	             /*heureTotal = new Date(new Date("1970-1-1 "+to) - new Date("1970-1-1 " + from)).toUTCString().split(" ")[4];*/
-	             console.log("tarif"+tarif );
-	             var hours = Math.floor(difference/60);
-	             var mins = difference%60;
-	             console.log(difference+" "+hours+" "+mins);
+	            var from = $("#timeFrom").val();
+	            var to = $("#timeTo").val();
+	            difference =  ( new Date("1970-1-1 " + to) - new Date("1970-1-1 " + from) ) / 1000 / 60;
+	            /*heureTotal = new Date(new Date("1970-1-1 "+to) - new Date("1970-1-1 " + from)).toUTCString().split(" ")[4];*/
+	            console.log("tarif"+tarif );
+	            var hours = Math.floor(difference/60);
+	            var mins = difference%60;
+	            console.log(difference+" "+hours+" "+mins);
 	             
-	             if(mins >= 15)
+	            if(mins >= 15)
 	     		   	hours++;	        
 	     		let calcTarif=tarif;	     
 	     		const montant = hours*calcTarif;

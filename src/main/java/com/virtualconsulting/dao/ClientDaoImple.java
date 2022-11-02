@@ -171,11 +171,9 @@ public class ClientDaoImple implements IClientDao{
 	@Override
 	public Client search(String nom, String prenom) {
 		try {
-			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom = ? and prenom = ?");
-			
+			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom = ? and prenom = ?");			
 			pStmt.setString(1, nom);
-			pStmt.setString(2, prenom);
-			
+			pStmt.setString(2, prenom);			
 			ResultSet rSet = pStmt.executeQuery();
 			
 			if(rSet.next()) {
@@ -205,14 +203,11 @@ public class ClientDaoImple implements IClientDao{
 	@Override
 	public Client find(String username, String password) {
 		try {
-			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom_identifiant = ? and mot_de_passe = md5(?)");
-			
+			PreparedStatement pStmt = conn.prepareStatement("select * from client where nom_identifiant = ? and mot_de_passe = md5(?)");			
 			pStmt.setString(1, username);
-			pStmt.setString(2, password);
-			
+			pStmt.setString(2, password);			
 			ResultSet rSet = pStmt.executeQuery();
-			System.out.println("Authentification executed");
-			
+			System.out.println("Authentification executed");			
 			if(rSet.next()) {
 				client = new Client();
 				client.setClientId(rSet.getInt("client_id"));
@@ -227,8 +222,7 @@ public class ClientDaoImple implements IClientDao{
 				System.out.println("Authentification succeed");
 				System.out.println(client.getNom());				
 				return client;
-			}
-			
+			}			
 			pStmt.close();
 			
 		} catch (Exception e) {
@@ -344,6 +338,38 @@ public class ClientDaoImple implements IClientDao{
 				}
 					
 				return 0;
+		}
+		@Override
+		public ArrayList<Client> getAll(String nom) {
+			ArrayList<Client> clients = new ArrayList<Client>();
+			
+			try {
+				PreparedStatement pStmt = conn.prepareStatement("select * from client where nom like ?");
+				
+				pStmt.setString(1,'%'+nom+'%');				
+				
+				ResultSet rSet = pStmt.executeQuery();
+				
+				while (rSet.next()) {
+					client = new Client();
+					client.setClientId(rSet.getInt("client_id"));
+					client.setNom(rSet.getString("nom"));
+					client.setPrenom(rSet.getString("prenom"));
+					client.setNomEntreprise(rSet.getString("nom_entreprise"));
+					client.setMail(rSet.getString("mail"));
+					client.setPhone(rSet.getString("phone"));
+					client.setCivilite(rSet.getString("civilite"));
+					client.setUsername(rSet.getString("nom_identifiant"));
+					client.setPassword(rSet.getString("mot_de_passe"));
+					
+					clients.add(client);
+				}				
+				pStmt.close();
+				
+			} catch (Exception e) {
+				System.err.println(e);
+			}
+			return clients;
 		}
 
 }

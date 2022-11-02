@@ -21,4 +21,5 @@ public interface IClientDao {
 	int find(String username);
 	int findClientId(String username);
 	Client findClient(String username);
+	ArrayList<Client> getAll(String nom);
 }
